@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :artist
   belongs_to :label
   belongs_to :genre
+  has_many :disks
   attachment :jacket_image
   
   validates :title, presence: true
