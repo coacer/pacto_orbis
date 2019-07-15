@@ -38,5 +38,25 @@ RSpec.describe Item, type: :model do
       item = build(:item, stock: nil)
       expect(item).to_not be_valid
     end
+    
+    it "is invalid with price on string" do
+      item = build(:item, price: "aaaaa")
+      expect(item).to_not be_valid
+    end
+
+    it "is invalid with stock on string" do
+      item = build(:item, stock: "aaaaa")
+      expect(item).to_not be_valid
+    end
+
+    it "is invalid with price on float" do
+      item = build(:item, price: 10.3)
+      expect(item).to_not be_valid
+    end
+
+    it "is invalid with stock on float" do
+      item = build(:item, stock: 10.3)
+      expect(item).to_not be_valid
+    end
   end
 end
