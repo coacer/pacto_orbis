@@ -8,6 +8,8 @@ class Admins::ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @disk = @item.disks.build
+    @song = @disk.songs.build
   end
 
   def create
@@ -34,6 +36,9 @@ class Admins::ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:artist_id, :label_id, :genre_id, :title, :price, :status, :stock, :jacket_image)
+      params.require(:item).permit(:artist_id, :label_id, :genre_id, :title,
+                                   :price, :status, :stock, :jacket_image,
+                                   disks_attributes: [:id, :_destroy,
+                                   songs_attributes: [:id, :_destroy, :title]])
     end
 end

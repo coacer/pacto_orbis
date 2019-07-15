@@ -1,20 +1,44 @@
 <%= render 'layouts/error', object: item %>
 <%= form_with model: [:admins, item], local: true do |f| %>
-  <%= f.label :artist %>
-  <%= f.select :artist_id, Artist.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %><br>
-  <%= f.label :シングル・アルバム名 %>
-  <%= f.text_field :title %><br>
-  <%= f.label :ジャケット画像 %>
-  <%= f.attachment_field :jacket_image %><br>
-  <%= f.label :価格 %>
-  <%= f.text_field :price %><br>
-  <%= f.label :label %>
-  <%= f.select :label_id, Label.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %><br>
-  <%= f.label :genre %>
-  <%= f.select :genre_id, Genre.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %><br>
-  <%= f.label :ステータス %>
-  <%= f.select :status, [["販売中", true], ["売り切れ", false]] %><br>
-  <%= f.label :在庫数 %>
-  <%= f.text_field :stock %><br>
+  <div class="field">
+    <%= f.label :artist %>
+    <%= f.select :artist_id, Artist.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %><br>
+  </div>
+  <div class="field">
+    <%= f.label :シングル・アルバム名 %>
+    <%= f.text_field :title %><br>
+  </div>
+  <div class="field">
+    <%= f.label :ジャケット画像 %>
+    <%= f.attachment_field :jacket_image %><br>
+  </div>
+  <div class="field">
+    <%= f.label :価格 %>
+    <%= f.text_field :price %><br>
+  </div>
+  <div class="field">
+    <%= f.label :label %>
+    <%= f.select :label_id, Label.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %><br>
+  </div>
+  <div class="field">
+    <%= f.label :genre %>
+    <%= f.select :genre_id, Genre.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %><br>
+  </div>
+  <div class="field">
+    <%= f.label :ステータス %>
+    <%= f.select :status, [["販売中", true], ["売り切れ", false]] %><br>
+  </div>
+  <div class="field">
+    <%= f.label :在庫数 %>
+    <%= f.text_field :stock %><br>
+  </div>
+  <div id="disks">
+    <%= f.fields_for :disks do |disk| %>
+      <%= render 'disk_fields', f: disk %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "ディスクを追加", f, :disks %>
+    </div>
+  </div>
   <%= f.submit "登録" %>
 <% end %>
