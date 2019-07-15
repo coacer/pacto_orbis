@@ -13,7 +13,7 @@ module PactoOrbis
 
     config.generators do |generator|
       generator.test_framework :rspec,
-        fixtures: true,
+        fixtures: false,
         view_specs: false,
         helper_specs: false,
         routing_specs: false
