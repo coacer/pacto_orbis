@@ -4,6 +4,7 @@ FactoryBot.define do
     sequence(:price) { |n| 1000 * n }
     status { true }
     jacket_image_id { "" }
+    sequence(:stock) { |n| 10 * n }
     # artist { nil }
     # label { nil }
     # genre { nil }
