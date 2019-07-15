@@ -1,3 +1,4 @@
+<%= render 'layouts/error', object: item %>
 <%= form_with model: [:admins, item], local: true do |f| %>
   <%= f.label :artist %>
   <%= f.select :artist_id, Artist.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %><br>
