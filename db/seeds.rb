@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+15.times do |n|
+  Artist.create!(name: "アーティスト#{n}")
+end
+
+15.times do |n|
+  Label.create!(name: "レーベル#{n}")
+end
+
+15.times do |n|
+  Genre.create!(name: "ジャンル#{n}")
+end
