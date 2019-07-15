@@ -1,12 +1,11 @@
 $(() => {
-
   const addElementDisk = () => {
     let diskCount = $('#disks').children('.nested-fields').length;
     diskHeading = '<h4>ディスク ' + diskCount + '</h4>';
     $('#disks>.nested-fields').eq(diskCount - 1).prepend(diskHeading);
   };
 
-  addElementDisk();
+  addElementDisk(); // Disk1を追記
 
   const target = document.getElementById("disks");
   const observer = new MutationObserver(addElementDisk);
