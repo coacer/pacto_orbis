@@ -1,3 +1,20 @@
 // Place all the styles related to the admins/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* form */
+.field {
+  margin: 20px 0;
+}
+
+#disks > .nested-fields {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+}
+
+/* show */
+// .item-show-wrapper {
+//   display: flex;
+// }
