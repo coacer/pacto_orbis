@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    attributes:
+      item:
+        artist_id: アーティスト
+        label_id: レーベル
+        genre_id: ジャンル
+        status: ステータス
+        jacket_image: ジャケット画像
+        title: タイトル
+        price: 価格
+        stock: 在庫数        
+      song:
+        title: 曲名
