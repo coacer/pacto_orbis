@@ -7,3 +7,10 @@
     </ul>
   </div>
 <% end %>
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert">
+    <ul>
+        <li><%= flash[:error] %></li>
+    </ul>
+  </div>
+<% end %>

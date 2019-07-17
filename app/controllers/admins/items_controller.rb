@@ -15,12 +15,17 @@ class Admins::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      flash[:success] = "商品を作成しました"
-      redirect_to admins_item_path(@item)
-    else
-      render :new
-    end
+    have_disks = !(@item.disks.empty? || @item.disks.first.songs.empty?)
+      unless have_disks
+        flash[:error] = "ディスクを入力してください"
+      end
+
+      if @item.save && have_disks
+        flash[:success] = "商品を作成しました"
+        redirect_to admins_item_path(@item)
+      else
+        render :new
+      end
   end
 
   def edit
