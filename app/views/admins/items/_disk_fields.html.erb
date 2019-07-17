@@ -1,13 +1,13 @@
 <div class="nested-fields">
   <div class="field">
-    <%= link_to_remove_association "ディスクを削除", f, class: "remove-disk" %>
+    <%= link_to_remove_association "ディスクを削除", f, class: "remove-disk btn btn-danger" %>
   </div>
   <div class="songs">
     <%= f.fields_for :songs do |song| %>
       <%= render 'song_fields', f: song %>
     <% end %>
     <div class="links">
-      <%= link_to_add_association "曲を追加", f, :songs %>
+      <%= link_to_add_association "曲を追加", f, :songs, class: "btn btn-success" %>
     </div>
   </div>
 </div>

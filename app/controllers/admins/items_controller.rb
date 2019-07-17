@@ -1,5 +1,6 @@
 class Admins::ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit]
+  protect_from_forgery except: :get_songs
+  before_action :set_item, only: [:show, :edit, :update]
   def index
   end
 
@@ -15,6 +16,7 @@ class Admins::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:success] = "商品を作成しました"
       redirect_to admins_item_path(@item)
     else
       render :new
@@ -25,9 +27,19 @@ class Admins::ItemsController < ApplicationController
   end
 
   def update
+    if @item.update(item_params)
+      flash[:success] = "商品を編集しました"
+      redirect_to admins_item_path(@item)
+    end
   end
 
   def destroy
+  end
+
+  def get_songs
+    disk = Disk.find(params[:id])
+    songs = disk.songs
+    render json: songs
   end
 
   private

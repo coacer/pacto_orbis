@@ -13,5 +13,19 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap-sprockets";  /*ここを追加*/
-@import "bootstrap";            /*ここを追加*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+footer {
+  background-color: #343a40;
+  color: #fff;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+}
+
