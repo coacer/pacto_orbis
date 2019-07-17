@@ -5,10 +5,14 @@ ja:
         artist_id: アーティスト
         label_id: レーベル
         genre_id: ジャンル
+        artist: アーティスト
+        label: レーベル
+        genre: ジャンル
         status: ステータス
         jacket_image: ジャケット画像
         title: タイトル
         price: 価格
         stock: 在庫数        
+        disks: ディスク
       song:
         title: 曲名
