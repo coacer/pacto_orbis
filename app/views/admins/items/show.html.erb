@@ -9,21 +9,12 @@
         <h3><%= @item.genre.name %> / <%= @item.label.name %></h3>
         <p>￥<%= @item.price %></p>
         <p><%= @item.status ? "販売中" : "売り切れ" %></p>
-        <select id="" name="">
-          <option value="">ディスク１</option>
-          <option value="">ディスク２</option>
-        </select>
-        <ol>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
-          <li>song title</li>
+        <!-- <select id="" name=""> -->
+        <!--   <option value="">ディスク１</option> -->
+        <!--   <option value="">ディスク２</option> -->
+        <!-- </select> -->
+        <%= select_tag('item[disks]', options_for_select(@item.disks.map.with_index{ |disk, index| ["Disk#{index + 1}", disk.id] })) %>
+        <ol id="songs-list">
         </ol>
         <p>在庫: <%= @item.stock %></p>
         <a href="#">編集</a>

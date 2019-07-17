@@ -1,4 +1,5 @@
 class Admins::ItemsController < ApplicationController
+  protect_from_forgery except: :get_songs
   before_action :set_item, only: [:show, :edit]
   def index
   end
@@ -28,6 +29,12 @@ class Admins::ItemsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def get_songs
+    disk = Disk.find(params[:id])
+    songs = disk.songs
+    render json: songs
   end
 
   private
