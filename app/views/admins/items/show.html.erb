@@ -11,6 +11,9 @@
         <p><%= @item.status ? "販売中" : "売り切れ" %></p>
         <%= select_tag('item[disks]', options_for_select(@item.disks.map.with_index{ |disk, index| ["Disk#{index + 1}", disk.id] })) %>
         <ol id="songs-list">
+          <% @item.disks.first.songs.each do |song| %>
+            <li><%= song.title %></li>
+          <% end %>
         </ol>
         <p>在庫: <%= @item.stock %></p>
         <%= link_to '編集', edit_admins_item_path(@item) %>

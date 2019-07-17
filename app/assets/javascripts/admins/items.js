@@ -53,7 +53,7 @@ $(() => {
     });
   }
 
-  getSongsAjax();  //ページ表示の際の呼び出し
+  // getSongsAjax();  //ページ表示の際の呼び出し
 
   $('#item_disks').change(getSongsAjax);
 
