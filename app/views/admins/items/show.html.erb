@@ -17,7 +17,9 @@
         </ol>
         <p>在庫: <%= @item.stock %></p>
         <%= link_to '編集', edit_admins_item_path(@item) %>
-        <%= link_to '削除', admins_item_path, method: :delete %>
+        <%= link_to '削除', admins_item_path, method: :delete, 
+          data: { "confirm" => "商品を削除した場合、購入履歴を表示できなくなる恐れがあります。
+                  \n本当に削除しますか？" } %>
       </div>
     </div>
   </div>
