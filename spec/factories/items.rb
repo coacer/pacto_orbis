@@ -8,5 +8,11 @@ FactoryBot.define do
     association :artist
     association :label
     association :genre
+
+    trait :create_with_disks do
+      after(:create) do |item|
+        create_list(:disk_create_with_songs, 3, item: item)
+      end
+    end
   end
 end

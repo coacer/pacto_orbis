@@ -13,10 +13,16 @@ RSpec.feature "Items", type: :feature do
   given!(:genre1) { create(:genre) }
   given!(:genre2) { create(:genre) }
   given!(:genre3) { create(:genre) }
+  # 商品データ作成
+  given!(:item1) { create(:item, :create_with_disks) }
+  given!(:item2) { create(:item, :create_with_disks) }
+  given!(:item3) { create(:item, :create_with_disks) }
 
   context "when valid scenario" do
-    scenario "create a new item" do
-      visit new_admins_item_path
+    scenario "create a new item via index page" do
+      visit admins_items_path
+      click_link "新規作成"
+      expect(page).to have_current_path new_admins_item_path
       expect(page).to have_content "商品登録"
       expect{
         select artist2.name, from: "アーティスト"
@@ -39,6 +45,21 @@ RSpec.feature "Items", type: :feature do
       expect(page).to have_content "30"
       # フラッシュメッセージを実装したらテストを書く
     end
+
+    scenario "destroy a item via index page", js: true do
+      visit admins_items_path
+      click_link "show", href: admins_item_path(item2)
+      expect(page).to have_current_path admins_item_path(item2)
+      expect(page).to have_content item2.title
+      expect{
+        click_link "削除"
+        expect(page.driver.browser.switch_to.alert.text).to include "本当に削除しますか？"
+        # expect(page.driver.browser.switch_to.alert.text).to eq "本当に削除しますか？\n商品を削除した場合、購入履歴を表示できなくなる恐れがあります。"
+        page.driver.browser.switch_to.alert.accept
+        # page.accept_confirm "本当に削除しますか？" #うまくいかない
+        expect(page).to have_current_path admins_items_path
+      }.to change(Item, :count).by(-1)
+    end
   end
 
   context "when invalid scenario" do
@@ -54,7 +75,13 @@ RSpec.feature "Items", type: :feature do
 
       expect(page).to have_current_path admins_items_path
       expect(page).to have_content "商品登録"
-      # エラーメッセージ表示を実装したらテストを書く
+      expect(page).to have_content "アーティストを入力してください"
+      expect(page).to have_content "レーベルを入力してください"
+      expect(page).to have_content "ジャンルを入力してください"
+      expect(page).to have_content "タイトルを入力してください"
+      expect(page).to have_content "価格は数値で入力してください"
+      expect(page).to have_content "在庫数は数値で入力してください"
+      expect(page).to have_content "ディスクを入力してください"
     end
   end
 end
