@@ -37,11 +37,14 @@ $(() => {
       dataType: "json",
 
       success: (data) => {
-        $('#songs-list').html('');
-        data.forEach((song) => {
-          let resource = `<li>${song.title}</li>`
-          $('#songs-list').append(resource);
-        })
+        $('#songs-list').fadeOut(function() {
+          $(this).html('');
+          data.forEach((song) => {
+            let resource = `<li>${song.title}</li>`
+            $(this).append(resource);
+          }, 500);
+          $(this).fadeIn(500);
+        });
       },
 
       error: (XMLHttpRequest, textStatus, errorThrown) => {

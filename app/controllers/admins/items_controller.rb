@@ -2,6 +2,7 @@ class Admins::ItemsController < ApplicationController
   protect_from_forgery except: :get_songs
   before_action :set_item, only: [:show, :edit, :update]
   def index
+    @items = Item.page(params[:page]).reverse_order
   end
 
   def show
