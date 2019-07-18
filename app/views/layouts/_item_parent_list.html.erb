@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-5">
+    <%= render 'layouts/error', object: object %>
+    <%= form_with model: [:admins, object], local: true do |f|  %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.submit "登録" %>
+    <% end %>
+  </div>
+  <div class="col-sm-7">
+    <div class="index-wrapper">
+      <% object_name = object.class.to_s.downcase %>
+      <% objects.each do |data| %>
+        <% edit_path = self.send("edit_admins_#{object_name}_path", data) %>
+        <% destroy_path = self.send("admins_#{object_name}_path", data) %>
+        <%= data.name %>
+        <%= link_to "編集", edit_path %>
+        <%= link_to "削除", destroy_path, method: :delete, data: { "confirm" => "本当に削除しますか？" } %>
+      <% end %>
+    </div>
+    <%= paginate objects, class: "pagination" %>
+  </div>
+</div>

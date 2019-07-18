@@ -18,7 +18,7 @@ class Admins::ItemsController < ApplicationController
     @item = Item.new(item_params)
     have_disks = !(@item.disks.empty? || @item.disks.first.songs.empty?)
       unless have_disks
-        flash[:error] = "ディスクを入力してください"
+        flash.now[:error] = "ディスクを入力してください"
       end
 
       if @item.save && have_disks

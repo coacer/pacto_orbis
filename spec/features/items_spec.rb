@@ -43,7 +43,9 @@ RSpec.feature "Items", type: :feature do
       expect(page).to have_content genre1.name
       expect(page).to have_content "10969"
       expect(page).to have_content "30"
-      # フラッシュメッセージを実装したらテストを書く
+      expect(page).to have_content  "商品を作成しました"
+      visit current_path
+      expect(page).to_not have_content  "商品を作成しました"
     end
 
     scenario "destroy a item via index page", js: true do
