@@ -1,61 +1,67 @@
 $(() => {
-  // -------new, editのディスクn表示
-  const addElementDisk = () => {
-    let diskCount = $('#disks').children('.nested-fields').length;
-    diskHeading = '<h4>ディスク ' + diskCount + '</h4>';
-    $('#disks>.nested-fields').eq(diskCount - 1).prepend(diskHeading);
-  };
+  $(document).on('turbolinks:load', () => {
 
-  addElementDisk(); // Disk1を追記
+    // -------new, editのディスクn表示
+    const addElementDisk = () => {
+      let diskCount = $('#disks').children('.nested-fields').length;
+      diskHeading = '<h4>ディスク ' + diskCount + '</h4>';
+      $('#disks>.nested-fields').eq(diskCount - 1).prepend(diskHeading);
+    };
 
-  const target = document.getElementById("disks");
-  const observer = new MutationObserver(addElementDisk);
+    addElementDisk(); // Disk1を追記
 
-  const options = {
-    childList: true
-  };
+    const target = document.getElementById("disks");
+    const observer = new MutationObserver(addElementDisk);
 
-  // 追加ボタンをクリックした時にDOM変化の監査開始
-  $('#disks>.links').click(() => {
-    observer.observe(target, options);
-  });
+    const options = {
+      childList: true
+    };
 
-  // 削除ボタンをクリックした時にDOM変化の監査停止
-  $(document).on('click', '.remove-disk', () => {
-    observer.disconnect();
-  });
-  // -------new, editのディスクn表示
-
-  // -------showのセレクトタグ
-  function getSongsAjax() {
-    const disk_id = $('#item_disks').children('option:selected').val();
-    const data = { id: disk_id };
-    $.ajax({
-      url: "/admins/items/get_songs",
-      type: "POST",
-      data: data,
-      dataType: "json",
-
-      success: (data) => {
-        $('#songs-list').html('');
-        data.forEach((song) => {
-          let resource = `<li>${song.title}</li>`
-          $('#songs-list').append(resource);
-        })
-      },
-
-      error: (XMLHttpRequest, textStatus, errorThrown) => {
-        console.error("Error occurred in getSongsAjax")
-        console.log(`XMLHttpRequest: ${XMLHttpRequest.status}`)
-        console.log(`textStatus: ${textStatus}`)
-        console.log(`errorThrown: ${errorThrown}`)
-      }
+    // 追加ボタンをクリックした時にDOM変化の監査開始
+    $('#disks>.links').click(() => {
+      observer.observe(target, options);
     });
-  }
 
-  // getSongsAjax();  //ページ表示の際の呼び出し
+    // 削除ボタンをクリックした時にDOM変化の監査停止
+    $(document).on('click', '.remove-disk', () => {
+      observer.disconnect();
+    });
+    // -------new, editのディスクn表示
 
-  $('#item_disks').change(getSongsAjax);
+    // -------showのセレクトタグ
+    function getSongsAjax() {
+      const disk_id = $('#item_disks').children('option:selected').val();
+      const data = { id: disk_id };
+      $.ajax({
+        url: "/admins/items/get_songs",
+        type: "POST",
+        data: data,
+        dataType: "json",
 
-  // -------showのセレクトタグ
+        success: (data) => {
+          $('#songs-list').fadeOut(function() {
+            $(this).html('');
+            data.forEach((song) => {
+              let resource = `<li>${song.title}</li>`
+              $(this).append(resource);
+            }, 500);
+            $(this).fadeIn(500);
+          });
+        },
+
+        error: (XMLHttpRequest, textStatus, errorThrown) => {
+          console.error("Error occurred in getSongsAjax")
+          console.log(`XMLHttpRequest: ${XMLHttpRequest.status}`)
+          console.log(`textStatus: ${textStatus}`)
+          console.log(`errorThrown: ${errorThrown}`)
+        }
+      });
+    }
+
+    // getSongsAjax();  //ページ表示の際の呼び出し
+
+    $('#item_disks').change(getSongsAjax);
+
+    // -------showのセレクトタグ
+  });
 });

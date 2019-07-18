@@ -1,7 +1,8 @@
 class Admins::ItemsController < ApplicationController
   protect_from_forgery except: :get_songs
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
+    @items = Item.page(params[:page]).reverse_order
   end
 
   def show
@@ -15,12 +16,17 @@ class Admins::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      flash[:success] = "商品を作成しました"
-      redirect_to admins_item_path(@item)
-    else
-      render :new
-    end
+    have_disks = !(@item.disks.empty? || @item.disks.first.songs.empty?)
+      unless have_disks
+        flash[:error] = "ディスクを入力してください"
+      end
+
+      if @item.save && have_disks
+        flash[:success] = "商品を作成しました"
+        redirect_to admins_item_url(@item)
+      else
+        render :new
+      end
   end
 
   def edit
@@ -29,11 +35,14 @@ class Admins::ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       flash[:success] = "商品を編集しました"
-      redirect_to admins_item_path(@item)
+      redirect_to admins_item_url(@item)
     end
   end
 
   def destroy
+    @item.destroy
+    flash[:success] = "商品を削除しました"
+    redirect_to admins_items_url
   end
 
   def get_songs
