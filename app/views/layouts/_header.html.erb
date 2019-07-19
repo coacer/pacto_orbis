@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample7">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PacOr</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarEexample7">
+      <ul class="nav navbar-nav navbar-right">
+      <!--  管理者 -->
+        <li><%= link_to "ユーザー", "#" %></li>
+        <li><%= link_to "アーティスト", admins_artists_path %></li>
+        <li><%= link_to "レーベル", admins_labels_path  %></li>
+        <li><%= link_to "ジャンル", admins_genres_path %></li>
+        <li><%= link_to "受注履歴", "#" %></li>
+        <li><%= link_to "商品", admins_items_path %></li>
+        <li><%= link_to "ログアウト", "#" %></li>
+      <!--  エンドユーザー(ログイン中) -->
+        <li><%= link_to "トップ", "#" %></li>
+        <li><%= link_to "マイページ", "#" %></li>
+        <li><%= link_to "カート", "#" %></li>
+        <li><%= link_to "ログアウト", "#" %></li>
+      <!--  エンドユーザー(ログアウト中) -->
+        <li><%= link_to "ログイン", "#" %></li>
+      </ul>
+    </div>
+  </div>
+</nav>

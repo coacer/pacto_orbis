@@ -1,0 +1,46 @@
+<%= render 'layouts/error', object: item %>
+<%= form_with model: [:admins, item], local: true do |f| %>
+  <div class="field">
+    <%= f.label :artist_id %>
+    <%= f.select :artist_id, Artist.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %>
+  </div>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :jacket_image %>
+    <%= f.attachment_field :jacket_image %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :label_id %>
+    <%= f.select :label_id, Label.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %>
+  </div>
+  <div class="field">
+    <%= f.label :genre_id %>
+    <%= f.select :genre_id, Genre.all.map { |t| [t.name, t.id] }, prompt: "選択してください" %>
+  </div>
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.select :status, [["販売中", true], ["売り切れ", false]] %>
+  </div>
+  <div class="field">
+    <%= f.label :stock %>
+    <%= f.text_field :stock %>
+  </div>
+  <div id="disks">
+    <%= f.fields_for :disks do |disk| %>
+      <%= render 'disk_fields', f: disk %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "ディスクを追加", f, :disks, class: "btn btn-success" %>
+    </div>
+  </div>
+  <br>
+  
+  <%= f.submit "登録", class: "btn btn-default" %>
+<% end %>

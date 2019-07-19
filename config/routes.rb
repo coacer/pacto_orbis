@@ -4,5 +4,13 @@ Rails.application.routes.draw do
     registrations: 'devise/users/registrations',
     passwords: 'devise/users/passwords'
   }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :admins do
+    resources :items do
+      post 'get_songs', on: :collection
+    end
+    resources :artists, only: [:index, :edit, :create, :update, :destroy]
+    resources :labels, only: [:index, :edit, :create, :update, :destroy]
+    resources :genres, only: [:index, :edit, :create, :update, :destroy]
+  end
 end

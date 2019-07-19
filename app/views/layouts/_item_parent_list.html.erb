@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-sm-5">
+    <%= render 'layouts/error', object: record %>
+    <%= form_with model: [:admins, record], local: true do |f|  %>
+      <%= f.label :name %>
+      <%= f.text_field :name %><br>
+      <%= f.submit "登録", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="col-sm-7">
+    <div class="index-wrapper">
+      <table>
+        <% records.each do |record| %>
+          <tr>
+            <th><%= record.name %></th>
+            <td><%= link_to "編集", [:edit, :admins, record] %></td>
+            <td><%= link_to "削除", [:admins, record], method: :delete, data: { "confirm" => "本当に削除しますか？" } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <%= paginate records, class: "pagination" %>
+  </div>
+</div>

@@ -10,7 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_14_061240) do
+ActiveRecord::Schema.define(version: 2019_07_15_081502) do
+
+  create_table "artists", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "disks", force: :cascade do |t|
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_disks_on_item_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "price", null: false
+    t.boolean "status", default: true, null: false
+    t.string "jacket_image_id"
+    t.integer "stock", null: false
+    t.integer "artist_id", null: false
+    t.integer "label_id", null: false
+    t.integer "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_items_on_artist_id"
+    t.index ["genre_id"], name: "index_items_on_genre_id"
+    t.index ["label_id"], name: "index_items_on_label_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "disk_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["disk_id"], name: "index_songs_on_disk_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
