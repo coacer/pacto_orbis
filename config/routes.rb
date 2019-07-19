@@ -7,4 +7,8 @@ Rails.application.routes.draw do
     resources :labels, only: [:index, :edit, :create, :update, :destroy]
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
   end
+
+  namespace :users do
+    resources :items, only: [:index, :show]
+  end
 end

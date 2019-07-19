@@ -1,0 +1,2 @@
+$('.item-lists-box').html('<%= j(render 'lists', items: @items) %>');
+$('.item-lists-box').prepend('<h2><%= "#{@model_name} / #{@record.name}" %></h2>');
