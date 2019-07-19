@@ -15,3 +15,9 @@ ja:
         stock: 在庫数        
       song:
         title: 曲名
+      artist:
+        name: アーティスト名
+      label:
+        name: レーベル名
+      genre:
+        name: ジャンル名
