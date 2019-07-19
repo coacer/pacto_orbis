@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -27,5 +28,16 @@ footer {
   height: 60px;
   text-align: center;
   line-height: 60px;
+}
+
+/* artist, genre, labelのindex */
+.index-wrapper > table {
+  width: 100%;
+}
+
+.index-wrapper tr {
+  border-bottom: 1px solid #eee;
+  height: 90px;
+  font-size: 1.3em;
 }
 

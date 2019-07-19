@@ -9,7 +9,7 @@ class Admins::ArtistsController < ApplicationController
     @artist = Artist.new(artist_params)
     @artists = Artist.page(params[:page])
     if @artist.save
-      flash[:success] = "レーベルを作成しました"
+      flash[:success] = "アーティストを作成しました"
       redirect_to admins_artists_url
     else
       render :index

@@ -9,7 +9,7 @@ class Admins::GenresController < ApplicationController
     @genre = Genre.new(genre_params)
     @genres = Genre.page(params[:page])
     if @genre.save
-      flash[:success] = "レーベルを作成しました"
+      flash[:success] = "ジャンルを作成しました"
       redirect_to admins_genres_url
     else
       render :index
