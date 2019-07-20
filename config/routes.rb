@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      post 'get_songs', on: :collection
+    end
   end
 end

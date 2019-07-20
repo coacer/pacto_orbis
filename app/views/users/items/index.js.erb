@@ -1,2 +1,5 @@
-$('.item-lists-box').html('<%= j(render 'lists', items: @items) %>');
-$('.item-lists-box').prepend('<h2><%= "#{@model_name} / #{@record.name}" %></h2>');
+var $itemLists = $('.item-lists-box');
+$itemLists.hide();
+$itemLists.html('<%= j(render 'lists', items: @items) %>');
+$itemLists.prepend('<h2><%= "#{@model_name} / #{@record.name}" %></h2>');
+$itemLists.fadeIn(1000);

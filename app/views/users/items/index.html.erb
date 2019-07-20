@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-sm-3 hidden-xs">
     <h3>アーティスト</h3>
     <ul class="record-lists">
       <% @artists.each do |artist| %>
@@ -9,7 +9,7 @@
       <% end %>
     </ul>
     <h3>レーベル</h3>
-    <ul>
+    <ul class="record-lists">
       <% @labels.each do |label| %>
         <li>
           <%= link_to label.name, users_items_path(id: label.id, model: label.class), remote: true %>
@@ -17,7 +17,7 @@
       <% end %>
     </ul>
     <h3>ジャンル</h3>  
-    <ul>
+    <ul class="record-lists">
       <% @genres.each do |genre| %>
         <li>
           <%= link_to genre.name, users_items_path(id: genre.id, model: genre.class), remote: true %>
@@ -25,7 +25,7 @@
       <% end %>
     </ul>
   </div>
-  <div class="col-md-9 item-lists-box">
+  <div class="col-sm-9 item-lists-box">
     <%= render 'lists', items: @items %>
   </div>
 </div>

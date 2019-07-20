@@ -28,40 +28,5 @@ $(() => {
     });
     // -------new, editのディスクn表示
 
-    // -------showのセレクトタグ
-    function getSongsAjax() {
-      const disk_id = $('#item_disks').children('option:selected').val();
-      const data = { id: disk_id };
-      $.ajax({
-        url: "/admins/items/get_songs",
-        type: "POST",
-        data: data,
-        dataType: "json",
-
-        success: (data) => {
-          $('#songs-list').fadeOut(function() {
-            $(this).html('');
-            data.forEach((song) => {
-              let resource = `<li>${song.title}</li>`
-              $(this).append(resource);
-            }, 500);
-            $(this).fadeIn(500);
-          });
-        },
-
-        error: (XMLHttpRequest, textStatus, errorThrown) => {
-          console.error("Error occurred in getSongsAjax")
-          console.log(`XMLHttpRequest: ${XMLHttpRequest.status}`)
-          console.log(`textStatus: ${textStatus}`)
-          console.log(`errorThrown: ${errorThrown}`)
-        }
-      });
-    }
-
-    // getSongsAjax();  //ページ表示の際の呼び出し
-
-    $('#item_disks').change(getSongsAjax);
-
-    // -------showのセレクトタグ
   });
 });

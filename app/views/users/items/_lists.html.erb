@@ -11,7 +11,7 @@
           <h4><%= item.title %> / <%= item.artist.name %></h4>
           <p><%= item.status ? "販売中" : "売り切れ" %></p>
           <p>在庫: <%= item.stock %></p>
-          <%= link_to 'show', admins_item_path(item) %>
+          <%= link_to 'show', users_item_path(item) %>
         </div>
 
       </div>
