@@ -10,17 +10,21 @@
         <p>￥<%= @item.price %></p>
         <p><%= @item.status ? "販売中" : "売り切れ" %></p>
         <%= select_tag('item[disks]', options_for_select(@item.disks.map.with_index{ |disk, index| ["Disk#{index + 1}", disk.id] }), 
-                                                          data: { "url" => get_songs_admins_items_path }) %>
+                                                          data: { "url" => get_songs_users_items_path }) %>
         <ol id="songs-list">
           <% @item.disks.first.songs.each do |song| %>
             <li><%= song.title %></li>
           <% end %>
         </ol>
         <p>在庫: <%= @item.stock %></p>
-        <%= link_to '編集', edit_admins_item_path(@item) %>
-        <%= link_to '削除', admins_item_path, method: :delete, 
-          data: { "confirm" => "商品を削除した場合、購入履歴を表示できなくなる恐れがあります。
-                  \n本当に削除しますか？" } %>
+        <select id="" name="">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+          <option value="">4</option>
+        </select>
+        枚
+        <button class="btn btn-primary">カートに追加</button>
       </div>
     </div>
   </div>
