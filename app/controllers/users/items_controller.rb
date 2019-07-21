@@ -1,4 +1,5 @@
 class Users::ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show]
   protect_from_forgery except: :get_songs
 
   def index

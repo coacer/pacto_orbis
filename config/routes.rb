@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
+    root 'items#index'
     resources :items do
       post 'get_songs', on: :collection
     end

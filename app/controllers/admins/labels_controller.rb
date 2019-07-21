@@ -1,4 +1,5 @@
 class Admins::LabelsController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_label, only: [:edit, :update, :destroy]
   def index
     @labels = Label.page(params[:page])
