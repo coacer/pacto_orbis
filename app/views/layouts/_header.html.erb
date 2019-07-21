@@ -12,21 +12,25 @@
 
     <div class="collapse navbar-collapse" id="navbarEexample7">
       <ul class="nav navbar-nav navbar-right">
-      <!--  管理者 -->
-        <li><%= link_to "ユーザー", "#" %></li>
-        <li><%= link_to "アーティスト", admins_artists_path %></li>
-        <li><%= link_to "レーベル", admins_labels_path  %></li>
-        <li><%= link_to "ジャンル", admins_genres_path %></li>
-        <li><%= link_to "受注履歴", "#" %></li>
-        <li><%= link_to "商品", admins_items_path %></li>
-        <li><%= link_to "ログアウト", "#" %></li>
-      <!--  エンドユーザー(ログイン中) -->
-        <li><%= link_to "トップ", users_items_path %></li>
-        <li><%= link_to "マイページ", "#" %></li>
-        <li><%= link_to "カート", "#" %></li>
-        <li><%= link_to "ログアウト", "#" %></li>
-      <!--  エンドユーザー(ログアウト中) -->
-        <li><%= link_to "ログイン", "#" %></li>
+          <!--  管理者 -->
+        <% if false  #admin_signed_in? %>
+          <li><%= link_to "ユーザー", "#" %></li>
+          <li><%= link_to "アーティスト", admins_artists_path %></li>
+          <li><%= link_to "レーベル", admins_labels_path  %></li>
+          <li><%= link_to "ジャンル", admins_genres_path %></li>
+          <li><%= link_to "受注履歴", "#" %></li>
+          <li><%= link_to "商品", admins_items_path %></li>
+          <li><%= link_to "ログアウト", "#" %></li>
+          <!--  エンドユーザー(ログイン中) -->
+        <% elsif user_signed_in? %>
+          <li><%= link_to "トップ", users_items_path %></li>
+          <li><%= link_to "マイページ", "#" %></li>
+          <li><%= link_to "カート", "#" %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          <!--  エンドユーザー(ログアウト中) -->
+        <% else %>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>
