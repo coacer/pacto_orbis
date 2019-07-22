@@ -1,4 +1,4 @@
-<% if object.errors.any? || flash[:error] %>
+<% if object.errors.any? || flash[:error] || flash[:alert] %>
   <div class="alert alert-danger" role="alert">
     <% if object.errors.any? %>
       <ul>
@@ -7,9 +7,11 @@
         <% end %>
       </ul>
     <% end %>
-    <% if flash[:error] %>
+    <% if flash %>
       <ul>
-        <li><%= flash[:error] %></li>
+        <% flash.each do |key, value| %>
+          <li><%= value %></li>
+        <% end %>
       </ul>
     <% end %>
   </div>

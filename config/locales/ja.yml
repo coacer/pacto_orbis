@@ -21,3 +21,14 @@ ja:
         name: レーベル名
       genre:
         name: ジャンル名
+      user:
+        first_name: 氏名(姓)
+        last_name: 氏名(名)
+        kana_first_name: 氏名(姓・カナ)
+        kana_last_name: 氏名(名・カナ)
+        postal_code: 郵便番号
+        phone: 電話番号
+        address: 住所
+        email: メールアドレス
+        password: パスワード
+
