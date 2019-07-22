@@ -11,6 +11,9 @@
     </div>
 
     <div class="collapse navbar-collapse" id="navbarEexample7">
+        <% if user_signed_in? %>
+          <p class="navbar-text">ようこそ<%= current_user.last_name + ' ' + current_user.first_name %>さん。</p>
+        <% end %>
       <ul class="nav navbar-nav navbar-right">
           <!--  管理者 -->
         <% if admin_signed_in? %>
@@ -23,6 +26,9 @@
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
           <!--  エンドユーザー(ログイン中) -->
         <% elsif user_signed_in? %>
+          <li><%= link_to "トップ", users_items_path %></li>
+          <li><%= link_to "マイページ", "#" %></li>
+          <li><%= link_to "カート", "#" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "トップ", users_items_path %></li>

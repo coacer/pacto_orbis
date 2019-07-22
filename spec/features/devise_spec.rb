@@ -31,6 +31,17 @@ RSpec.feature "Devises", type: :feature do
         expect(page).to have_link "ログアウト", href: destroy_user_session_path
         expect(page).to_not have_current_path admins_root_path
       end
+
+      scenario "signin as user friendly forwarding" do
+        item = create(:item, :create_with_disks)
+        visit users_item_path(item)
+        expect(page).to have_current_path new_user_session_path
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+        click_button "Log in"
+        expect(page).to have_current_path users_item_path(item)
+        expect(page).to have_link "ログアウト", href: destroy_user_session_path
+      end
     end
   end
 end
