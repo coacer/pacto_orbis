@@ -66,8 +66,8 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid with kana_first_name except katakana" do
-      user_with_alphabet = build(:user, first_name: "aaaaa" )
-      user_with_hiragana = build(:user, first_name: "あああああ" )
+      user_with_alphabet = build(:user, kana_first_name: "aaaaa" )
+      user_with_hiragana = build(:user, kana_first_name: "あああああ" )
       expect(user_with_alphabet).to_not be_valid
       expect(user_with_hiragana).to_not be_valid
     end
@@ -83,8 +83,8 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid with kana_last_name except katakana" do
-      user_with_alphabet = build(:user, last_name: "aaaaa" )
-      user_with_hiragana = build(:user, last_name: "あああああ" )
+      user_with_alphabet = build(:user, kana_last_name: "aaaaa" )
+      user_with_hiragana = build(:user, kana_last_name: "あああああ" )
       expect(user_with_alphabet).to_not be_valid
       expect(user_with_hiragana).to_not be_valid
     end
