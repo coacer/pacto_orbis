@@ -1,0 +1,39 @@
+<% resource = user_signed_in? ? :users : user %>
+<%= form_with model: user, url: [namespace, resource], local: true do |f| %>
+  <div class="field">
+    <%= f.label :氏名 %><br />
+    <%= f.text_field :last_name, autofocus: true, placeholder: "姓" %>
+    <%= f.text_field :first_name, placeholder: "名" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :氏名（カナ） %><br />
+    <%= f.text_field :kana_last_name, placeholder: "セイ" %>
+    <%= f.text_field :kana_first_name, placeholder: "メイ" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :郵便番号 %><br />
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :住所 %><br />
+    <%= f.text_field :address %> <!-- あとでカラムを都道府県(プルダウン)と住所に分割 -->
+  </div>
+
+  <div class="field">
+    <%= f.label :電話番号 %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
+
