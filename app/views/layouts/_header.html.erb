@@ -27,12 +27,12 @@
           <!--  エンドユーザー(ログイン中) -->
         <% elsif user_signed_in? %>
           <li><%= link_to "トップ", users_items_path %></li>
-          <li><%= link_to "マイページ", "#" %></li>
+          <li><%= link_to "マイページ", users_users_path %></li>
           <li><%= link_to "カート", "#" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to "トップ", users_items_path %></li>
-          <li><%= link_to "マイページ", "#" %></li>
+          <li><%= link_to "マイページ", users_users_path %></li>
           <li><%= link_to "カート", "#" %></li>
           <!--  エンドユーザー(ログアウト中) -->
           <li><%= link_to "ログイン", new_user_session_path %></li>

@@ -2,19 +2,6 @@ Rails.application.routes.draw do
 
   root 'users/items#index'
 
-  devise_for :admins, controllers: {
-    sessions: 'devise/admins/sessions',
-    registrations: 'devise/admins/registrations',
-    passwords: 'devise/admins/passwords'
-  }
-
-
-  devise_for :users, controllers: {
-    sessions: 'devise/users/sessions',
-    registrations: 'devise/users/registrations',
-    passwords: 'devise/users/passwords'
-  }
-
   namespace :admins do
     root 'items#index'
     resources :items do
@@ -34,4 +21,18 @@ Rails.application.routes.draw do
       patch 'unsubscribe', on: :collection
     end
   end
+
+  devise_for :admins, controllers: {
+    sessions: 'devise/admins/sessions',
+    registrations: 'devise/admins/registrations',
+    passwords: 'devise/admins/passwords'
+  }
+
+
+  devise_for :users, controllers: {
+    sessions: 'devise/users/sessions',
+    registrations: 'devise/users/registrations',
+    passwords: 'devise/users/passwords'
+  }
+
 end

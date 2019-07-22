@@ -41,3 +41,19 @@ footer {
   font-size: 1.3em;
 }
 
+/* users */
+.tab-content {
+  padding: 50px;  
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  table {
+  margin: 0 auto;
+  font-size: 1.4em;
+  }
+
+  th, td {
+    padding: 20px;
+  }
+}
+
