@@ -29,5 +29,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show] do
       post 'get_songs', on: :collection
     end
+    resource :users, only: [:show, :edit, :update] do
+      get 'unsubscribe_confirm', on: :collection
+      patch 'unsubscribe', on: :collection
+    end
   end
 end
