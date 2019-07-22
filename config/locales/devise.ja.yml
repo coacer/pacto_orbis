@@ -22,6 +22,7 @@ ja:
       invalid_token: '認証キーが不正です'
       timeout: '一定時間が経過したため、再度ログインが必要です'
       inactive: 'アカウントがまだ有効になっていません'
+      unsubscribed: '退会したユーザーのメールアドレスです'
     sessions:
       signed_in: 'ログインしました'
       signed_out: 'ログアウトしました'

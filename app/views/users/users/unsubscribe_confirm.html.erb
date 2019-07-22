@@ -1,2 +1,5 @@
-<h1>Users::Users#unsubscribe_confirm</h1>
-<p>Find me in app/views/users/users/unsubscribe_confirm.html.erb</p>
+<div class="unsubscribe">
+  <h1>本当に退会しますか？</h1>
+  <%= link_to "Top", root_path %>
+  <%= link_to "退会", unsubscribe_users_users_path, method: :patch %>
+</div>

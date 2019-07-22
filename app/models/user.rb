@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
 
   validates :first_name, presence: true, length: { maximum: 15 }, format: { with: /\A\p{blank}*[^\p{katakana}\p{blank}ｧ-ﾝﾞﾟ]+\p{blank}*\z/ }
   validates :last_name, presence: true, length: { maximum: 15 }, format: { with: /\A\p{blank}*[^\p{katakana}\p{blank}ｧ-ﾝﾞﾟ]+\p{blank}*\z/}
@@ -14,5 +14,13 @@ class User < ApplicationRecord
 
   def read_postal_code
     postal_code[0, 3] + "-" + postal_code[3, 4]
+  end
+
+  def active_for_authentication?
+    super && !(self.is_deleted)
+  end
+
+  def inactive_message
+    !(self.is_deleted) ? super : :unsubscribed
   end
 end

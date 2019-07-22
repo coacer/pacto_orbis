@@ -20,6 +20,10 @@ class Users::UsersController < ApplicationController
   end
 
   def unsubscribe
+    current_user.update(is_deleted: true)
+    reset_session
+    flash[:success] = "退会しました"
+    redirect_to root_path
   end
 
   private
