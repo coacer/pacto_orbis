@@ -7,8 +7,8 @@ RSpec.feature "Devises", type: :feature do
 
       scenario "signin as admin" do
         visit new_admin_session_path
-        fill_in "Email", with: admin.email
-        fill_in "Password", with: admin.password
+        fill_in "メールアドレス", with: admin.email
+        fill_in "パスワード", with: admin.password
         click_button "Log in"
         expect(page).to have_current_path admins_root_path
         expect(page).to have_link "ログアウト", href: destroy_admin_session_path
@@ -24,8 +24,8 @@ RSpec.feature "Devises", type: :feature do
 
       scenario "signin as user" do
         visit new_user_session_path
-        fill_in "Email", with: user.email
-        fill_in "Password", with: user.password
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: user.password
         click_button "Log in"
         expect(page).to have_current_path root_path
         expect(page).to have_link "ログアウト", href: destroy_user_session_path
@@ -36,8 +36,8 @@ RSpec.feature "Devises", type: :feature do
         item = create(:item, :create_with_disks)
         visit users_item_path(item)
         expect(page).to have_current_path new_user_session_path
-        fill_in "Email", with: user.email
-        fill_in "Password", with: user.password
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: user.password
         click_button "Log in"
         expect(page).to have_current_path users_item_path(item)
         expect(page).to have_link "ログアウト", href: destroy_user_session_path

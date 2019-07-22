@@ -26,7 +26,7 @@
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
           <!--  エンドユーザー(ログイン中) -->
         <% elsif user_signed_in? %>
-          <li><%= link_to "トップ", users_items_path %></li>
+          <li><%= link_to "トップ", root_path %></li>
           <li><%= link_to "マイページ", users_users_path %></li>
           <li><%= link_to "カート", "#" %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
