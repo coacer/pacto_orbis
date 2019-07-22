@@ -1,6 +1,11 @@
 module FeatureMacros
   def user_login_as(user)
-
+    visit new_user_session_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Log in"
+    expect(page).to have_current_path root_path
+    expect(page).to have_link "ログアウト", href: destroy_user_session_path
   end
 
   def admin_login_as(admin)
