@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "ArtistsLabelsGenres", type: :feature do
+  given!(:admin) { create(:admin) }
   given!(:artist1) { create(:artist) }
   given!(:artist2) { create(:artist) }
   given!(:artist3) { create(:artist) }
@@ -10,6 +11,10 @@ RSpec.feature "ArtistsLabelsGenres", type: :feature do
   given!(:genre1) { create(:genre) }
   given!(:genre2) { create(:genre) }
   given!(:genre3) { create(:genre) }
+
+  background do
+    admin_login_as admin
+  end
 
   context "valid scenario" do
     scenario "create an artist" do

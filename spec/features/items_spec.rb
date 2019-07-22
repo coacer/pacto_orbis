@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.feature "Items", type: :feature do
+  # adminデータ生成
+  given!(:admin) { create(:admin) }
   # アーティストデータ生成
   given!(:artist1) { create(:artist) }
   given!(:artist2) { create(:artist) }
@@ -17,6 +19,10 @@ RSpec.feature "Items", type: :feature do
   given!(:item1) { create(:item, :create_with_disks) }
   given!(:item2) { create(:item, :create_with_disks) }
   given!(:item3) { create(:item, :create_with_disks) }
+
+  background do
+    admin_login_as admin
+  end
 
   context "when valid scenario" do
     scenario "create a new item via index page" do
