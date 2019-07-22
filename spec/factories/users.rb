@@ -11,10 +11,10 @@ FactoryBot.define do
     # last_name { last_name }    
     # kana_first_name { first_name.yomi }    
     # kana_last_name { last_name.yomi }    
-    first_name { "山田" }    
-    last_name { "太郎" }    
-    kana_first_name { "ヤマダ" }    
-    kana_last_name { "タロウ" }    
+    first_name { "太郎" }    
+    last_name { "山田" }    
+    kana_first_name { "タロウ" }    
+    kana_last_name { "ヤマダ" }    
     phone { phone }
     postal_code { postal_code }
     address { address }

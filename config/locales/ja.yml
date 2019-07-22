@@ -31,6 +31,7 @@ ja:
         address: 住所
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード確認
       admin:
         email: メールアドレス
         password: パスワード

@@ -15,27 +15,27 @@
   </div>
 
   <div class="field">
-    <%= f.label :郵便番号 %><br />
+    <%= f.label :postal_code %><br />
     <%= f.text_field :postal_code %>
   </div>
 
   <div class="field">
-    <%= f.label :住所 %><br />
+    <%= f.label :address %><br />
     <%= f.text_field :address %> <!-- あとでカラムを都道府県(プルダウン)と住所に分割 -->
   </div>
 
   <div class="field">
-    <%= f.label :電話番号 %><br />
+    <%= f.label :phone %><br />
     <%= f.text_field :phone %>
   </div>
 
   <div class="field">
-    <%= f.label :メールアドレス %><br />
+    <%= f.label :email %><br />
     <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :パスワード %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %>文字以上)</em>
     <% end %><br />
@@ -43,7 +43,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :パスワード確認 %><br />
+    <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 

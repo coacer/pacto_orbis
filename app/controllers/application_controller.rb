@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_location
+    return if current_user || current_admin
     session[:forwarding_url] = request.original_url if request.get?
   end
 
