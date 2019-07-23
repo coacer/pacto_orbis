@@ -31,4 +31,26 @@ end
     end
 
   end
+
+  20.times do |i|
+    first_name = Faker::Japanese::Name.first_name
+    last_name = Faker::Japanese::Name.last_name
+    postal_code = Faker::Number.number(7)
+    phone = Faker::Number.number(11)
+    address = Faker::Address.full_address
+
+    User.create(
+      first_name: first_name,
+      last_name: last_name,
+      kana_first_name: first_name.yomi,
+      kana_last_name: last_name.yomi,
+      postal_code: postal_code,
+      phone: phone,
+      address: address,
+      email: "example@test#{i}.com",
+      password: "password",
+      password_confirmation: "password"
+    )
+
+  end
 end
