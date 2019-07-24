@@ -55,6 +55,6 @@ class User < ApplicationRecord
   end
 
   def set_address
-    self.address = @prefecture_name + ' ' + @city + ' ' + @street
+    self.address = [@prefecture_name, @city, @street].join(' ')
   end
 end

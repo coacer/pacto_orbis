@@ -4,7 +4,8 @@ FactoryBot.define do
   # last_name = Faker::Japanese::Name.last_name
   phone = Faker::Number.number(11)
   postal_code = Faker::Number.number(7)
-  address = Faker::Address.full_address
+  address = Gimei.address
+  street = Faker::Number.number(4) + '-' + Faker::Number.number(3)
 
   factory :user do
     # first_name { first_name }    
@@ -17,7 +18,9 @@ FactoryBot.define do
     kana_last_name { "ヤマダ" }    
     phone { phone }
     postal_code { postal_code }
-    address { address }
+    prefecture_name { address.prefecture.kanji }
+    city { address.city.kanji }
+    street { street }
     sequence(:email) { |n| "example@test#{n}.com" }    
     password { "password" }    
     password_confirmation { "password" }    

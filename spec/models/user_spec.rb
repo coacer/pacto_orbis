@@ -131,8 +131,18 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
     end
 
-    it "is invalid with blank address" do
-      user = build(:user, address: "   ")
+    it "is invalid with blank prefecture" do
+      user = build(:user, prefecture_name: "   ")
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid with blank city" do
+      user = build(:user, city: "   ")
+      expect(user).to_not be_valid
+    end
+
+    it "is invalid with blank street" do
+      user = build(:user, street: "   ")
       expect(user).to_not be_valid
     end
 
