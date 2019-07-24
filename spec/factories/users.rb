@@ -30,5 +30,12 @@ FactoryBot.define do
         create_list(:address, 5, user: user)
       end
     end
+
+    trait :create_with_items do
+      after(:create) do |user|
+        create_list(:cart_item, 5, user: user, item: create(:item, :create_with_disks))
+      end
+    end
+
   end
 end

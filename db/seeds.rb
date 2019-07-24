@@ -33,6 +33,7 @@ end
     end
 
   end
+end
 
   20.times do |i|
     first_name = Faker::Japanese::Name.first_name
@@ -70,8 +71,10 @@ end
           city: address.city.kanji,
           street: street
         )
+
+        random_num = (1..30).to_a.shuffle[0]
+        user.cart_items.create!(item_id: random_num, amount: random_num)
       end
     end
 
   end
-end
