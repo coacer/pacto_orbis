@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Admin.create!(email: "coacer@vate.com", password: "password", password_confirmation: "password")
+
 15.times do
   Artist.create!(name: Faker::Music.band)
   Label.create!(name: Faker::Team.creature)
@@ -37,7 +39,8 @@ end
     last_name = Faker::Japanese::Name.last_name
     postal_code = Faker::Number.number(7)
     phone = Faker::Number.number(11)
-    address = Faker::Address.full_address
+    address = Gimei.address
+    street = Faker::Number.number(4) + '-' + Faker::Number.number(3)
 
     User.create(
       first_name: first_name,
@@ -46,7 +49,9 @@ end
       kana_last_name: last_name.yomi,
       postal_code: postal_code,
       phone: phone,
-      address: address,
+      prefecture_name: address.prefecture.kanji,
+      city: address.city.kanji,
+      street: street,
       email: "example@test#{i}.com",
       password: "password",
       password_confirmation: "password"
