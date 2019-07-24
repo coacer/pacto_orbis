@@ -14,7 +14,7 @@ class Admins::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:success] = "編集しました"
+      flash[:success] = "ユーザー情報を編集しました"
       redirect_to admins_user_path(@user)
     else
       render :edit
@@ -23,7 +23,7 @@ class Admins::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:success] = "削除しました"
+    flash[:success] = "ユーザーを削除しました"
     redirect_to admins_users_path 
   end
 

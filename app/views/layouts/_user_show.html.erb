@@ -47,7 +47,7 @@
         <% if user_signed_in? %>
           <%= link_to "退会", unsubscribe_confirm_users_users_path, class: "btn btn-danger" %>
         <% else %>
-          <%= link_to "削除", admins_user_path(user), method: :delete, data: { "confirm" => "本当に削除しますか" }, class: "btn btn-danger" %>
+          <%= link_to "削除", admins_user_path(user), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>
         <% end %>
       </div>
       <div class="tab-pane" id="sampleContentB">
