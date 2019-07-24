@@ -42,7 +42,19 @@ class User < ApplicationRecord
     !(self.is_deleted) ? super : :unsubscribed
   end
 
+  def prefecture_name
+    @prefecture_name || self.address.split[0] if self.address.present?
+  end
+
+  def city
+    @city || self.address.split[1] if self.address.present?
+  end
+
+  def street
+    @street || self.address.split[2] if self.address.present?
+  end
+
   def set_address
-    self.address = @prefecture_name + @city + @street
+    self.address = @prefecture_name + ' ' + @city + ' ' + @street
   end
 end
