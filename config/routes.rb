@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       patch 'unsubscribe', on: :collection
     end
     resources :addresses, only: [:create, :edit, :update, :destroy]
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   end
 
   devise_for :admins, controllers: {

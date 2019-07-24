@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <h3>カート</h3>
+    <hr>
+
+    <% @items.each do |item| %>
+      <div class="jumbotron item-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+
+            <div class="col-sm-4">
+              <%= attachment_image_tag item, :jacket_image, :fill, 100, 100, size: "100x100", fallback: "no_image.png" %>
+            </div>
+
+            <div class="col-sm-8">
+              <h4><%= item.title %> / <%= item.artist.name %></h4>
+              <p>¥<%= item.price %> × <%= item.cart_items.first.amount %>枚</p>
+              <p>在庫: <%= item.stock %>枚</p>
+              <p><%= item.status ? "販売中" : "売り切れ" %></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
