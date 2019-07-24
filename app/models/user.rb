@@ -16,6 +16,18 @@ class User < ApplicationRecord
     postal_code[0, 3] + "-" + postal_code[3, 4]
   end
 
+  def status
+    is_deleted ? "退会済み" : "利用中"
+  end
+
+  def full_name
+    "#{last_name} #{first_name}"
+  end
+
+  def kana_full_name
+    "#{kana_last_name} #{kana_first_name}"
+  end
+
   def active_for_authentication?
     super && !(self.is_deleted)
   end

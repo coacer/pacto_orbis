@@ -12,12 +12,12 @@
 
     <div class="collapse navbar-collapse" id="navbarEexample7">
         <% if user_signed_in? %>
-          <p class="navbar-text">ようこそ<%= current_user.last_name + ' ' + current_user.first_name %>さん。</p>
+          <p class="navbar-text">ようこそ<%= current_user.full_name %>さん。</p>
         <% end %>
       <ul class="nav navbar-nav navbar-right">
           <!--  管理者 -->
         <% if admin_signed_in? %>
-          <li><%= link_to "ユーザー", "#" %></li>
+          <li><%= link_to "ユーザー", admins_users_path %></li>
           <li><%= link_to "アーティスト", admins_artists_path %></li>
           <li><%= link_to "レーベル", admins_labels_path  %></li>
           <li><%= link_to "ジャンル", admins_genres_path %></li>
