@@ -13,14 +13,14 @@ RSpec.feature "Addresses", type: :feature do
     end
 
       scenario "destroy address", js: true do
-        # visit admins_user_path(user)
-        # click_link "登録住所一覧"
-        # expect{
-        #   click_link "削除", href: users_address_path(address1)
-        #   expect(page.driver.browser.switch_to.alert.text).to eq "本当に削除しますか？"
-        #   page.driver.browser.switch_to.alert.accept
-        #   expect(page).to have_content "住所を削除しました"
-        # }.to change(Address, :count).by(-1)
+        visit admins_user_path(user)
+        click_link "登録住所一覧"
+        expect{
+          click_link "削除", href: admins_address_path(address1)
+          expect(page.driver.browser.switch_to.alert.text).to eq "本当に削除しますか？"
+          page.driver.browser.switch_to.alert.accept
+          expect(page).to have_content "住所を削除しました"
+        }.to change(Address, :count).by(-1)
       end
   end
 

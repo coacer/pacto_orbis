@@ -10,7 +10,7 @@
         <% if user_signed_in? %>
           <td><%= link_to "編集", edit_users_address_path(address), class: "btn btn-success" %></td>
         <% end %>
-        <td><%= link_to "削除", users_address_path(address), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+        <td><%= link_to "削除", [namespace, address], method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

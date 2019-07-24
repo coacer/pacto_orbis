@@ -14,7 +14,7 @@
         <%= render 'layouts/user_info', namespace: namespace, user: user, resource: resource %>
       </div>
       <div class="tab-pane" id="sampleContentB"> <!-- 登録住所一覧 -->
-        <%= render 'layouts/addresses_index', addresses: user.addresses %>
+        <%= render 'layouts/addresses_index', namespace: namespace, addresses: user.addresses %>
       </div>
       <div class="tab-pane" id="sampleContentC"> <!-- 購入履歴一覧 -->
         <p>タブＣの内容</p>
