@@ -1,15 +1,17 @@
 <table class="table table-hover">
-	<tbody>
+  <tbody>
     <% addresses.each do |address| %>
-		<tr>
-      <td>
-        <p><%= address.name %></p>
-        <p><%= address.read_postal_code %></p>
-        <p><%= address.address %></p>
-      </td>
-      <td><%= link_to "編集", edit_users_address_path(address), class: "btn btn-success" %></td>
-      <td><%= link_to "削除", users_address_path(address), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %></td>
-		</tr>
-  <% end %>
-	</tbody>
+      <tr>
+        <td>
+          <p><%= address.name %></p>
+          <p><%= address.read_postal_code %></p>
+          <p><%= address.address %></p>
+        </td>
+        <% if user_signed_in? %>
+          <td><%= link_to "編集", edit_users_address_path(address), class: "btn btn-success" %></td>
+        <% end %>
+        <td><%= link_to "削除", users_address_path(address), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

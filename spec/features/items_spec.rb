@@ -22,7 +22,7 @@ RSpec.feature "Items", type: :feature do
   # 管理者
   feature "admin" do
     # adminデータ生成
-    given!(:admin) { create(:admin) }
+    given(:admin) { create(:admin) }
 
     background do
       admin_login_as admin

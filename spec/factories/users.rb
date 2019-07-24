@@ -24,5 +24,11 @@ FactoryBot.define do
     sequence(:email) { |n| "example@test#{n}.com" }    
     password { "password" }    
     password_confirmation { "password" }    
+
+    trait :create_with_addresses do
+      after(:create) do |user|
+        create_list(:address, 5, user: user)
+      end
+    end
   end
 end
