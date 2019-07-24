@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
+  has_many :addresses
 
   before_validation :set_address
   attr_accessor :prefecture_name, :city, :street
