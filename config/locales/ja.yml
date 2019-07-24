@@ -29,6 +29,9 @@ ja:
         postal_code: 郵便番号
         phone: 電話番号
         address: 住所
+        prefecture_name: 都道府県
+        city: 市区町村
+        street: 番地
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認

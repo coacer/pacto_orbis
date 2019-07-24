@@ -20,8 +20,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %> <!-- あとでカラムを都道府県(プルダウン)と住所に分割 -->
+    <%= f.label :prefecture_name %><br />
+    <%= f.select :prefecture_name, get_prefecture_all %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street %><br />
+    <%= f.text_field :street %>
   </div>
 
   <div class="field">
