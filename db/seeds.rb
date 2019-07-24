@@ -42,7 +42,7 @@ end
     address = Gimei.address
     street = Faker::Number.number(4) + '-' + Faker::Number.number(3)
 
-    User.create(
+    user = User.create(
       first_name: first_name,
       last_name: last_name,
       kana_first_name: first_name.yomi,
@@ -56,6 +56,22 @@ end
       password: "password",
       password_confirmation: "password"
     )
+
+    if user.valid?
+      5.times do
+        name = Faker::Japanese::Name.name
+        postal_code = Faker::Number.number(7)
+        address = Gimei.address
+        street = Faker::Number.number(4) + '-' + Faker::Number.number(3)
+        user.addresses.create!(
+          name: name,
+          postal_code: postal_code,
+          prefecture_name: address.prefecture.kanji,
+          city: address.city.kanji,
+          street: street
+        )
+      end
+    end
 
   end
 end
