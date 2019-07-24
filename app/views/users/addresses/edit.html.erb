@@ -1,0 +1,32 @@
+<%= render 'layouts/error', object: @address %>
+<%= form_with model: [:users, @address], local: true do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_name %><br />
+    <%= f.select :prefecture_name, get_prefecture_all %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street %><br />
+    <%= f.text_field :street %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "保存" %>
+  </div>
+<% end %>
+

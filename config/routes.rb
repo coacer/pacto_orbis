@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'unsubscribe_confirm', on: :collection
       patch 'unsubscribe', on: :collection
     end
+    resources :addresses, only: [:create, :edit, :update, :destroy]
   end
 
   devise_for :admins, controllers: {

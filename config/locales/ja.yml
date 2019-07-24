@@ -38,4 +38,11 @@ ja:
       admin:
         email: メールアドレス
         password: パスワード
+      address:
+        name: 氏名
+        postal_code: 郵便番号
+        address: 住所
+        prefecture_name: 都道府県
+        city: 市区町村
+        street: 番地
 
