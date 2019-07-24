@@ -1,0 +1,38 @@
+<table>
+  <tr>
+    <th>氏名</th>
+    <td><%= user.full_name %></td>
+  </tr>
+  <tr>
+    <th>氏名(カナ)</th>
+    <td><%= user.kana_full_name %></td>
+  </tr>
+  <tr>
+    <th>郵便番号</th>
+    <td><%= user.read_postal_code %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= user.address %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= user.phone %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= user.email %></td>
+  </tr>
+  <% if admin_signed_in? %>
+    <tr>
+      <th>ステータス</th>
+      <td><%= user.status %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to "編集", [:edit, namespace, resource], class: "btn btn-success" %>
+<% if user_signed_in? %>
+  <%= link_to "退会", unsubscribe_confirm_users_users_path, class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "削除", admins_user_path(user), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>
+<% end %>
