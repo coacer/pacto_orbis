@@ -1,5 +1,6 @@
 class Users::CartItemsController < ApplicationController
   before_action :authenticate_user!
+  protect_from_forgery except: :update
 
   def index
     @items = current_user.items
@@ -33,8 +34,18 @@ class Users::CartItemsController < ApplicationController
           render 'users/items/show'
         end
       }
-      format.js { # cart_items/indexページからのAjaxでのカート追加
 
+      format.js { # cart_items/indexページからのAjaxでのカート追加
+        amount = params[:amount].to_i
+        cart_item_amount = @cart_item.amount
+        # if @cart_item.update(amount: amount) # 自作バリデーションに引っかかってしまう。バリデーションの良いロジックが思いつかないのでバリデーションコメントアウト
+          @cart_item.update(amount: amount)
+          amount_diff = amount - cart_item_amount
+          @item.reduce_stock(amount_diff)
+          render json: @item.reload
+        # else
+        #   render json: @cart_item
+        # end
       }
     end
   end
