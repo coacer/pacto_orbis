@@ -1,2 +1,88 @@
-<h1>Users::Orders#new</h1>
-<p>Find me in app/views/users/orders/new.html.erb</p>
+<%= form_tag users_orders_path do %>
+  <h3>送付先</h3>
+  <hr>
+  <%= radio_button_tag 'order[address]', 0 %> この住所を使う
+  <p><%= current_user.read_postal_code %></p>
+  <p><%= current_user.address %></p>
+
+  <% current_user.addresses.each do |address| %>
+    <hr>
+    <%= radio_button_tag 'order[address]', address.id %> この住所を使う
+    <p><%= address.name %></p>
+    <p><%= address.read_postal_code %></p>
+    <p><%= address.address %></p>
+    <%= link_to "編集", edit_users_address_path(address), class: "btn btn-success" %>
+    <%= link_to "削除", users_address_path(address), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>
+  <% end %>
+
+  <hr>
+  <%= radio_button_tag 'order[address]', -1 %> 新しい住所を追加
+
+  <div class="field">
+    <%= label_tag 'address[name]', "氏名" %><br />
+    <%= text_field_tag 'address[name]' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'address[postal_code]', "郵便番号" %><br />
+    <%= text_field_tag 'address[postal_code]' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'address[prefecture_name]', "都道府県" %><br />
+    <%= select_tag 'address[prefecture_name]', options_for_select(get_prefecture_all) %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'address[city]', "市区町村" %><br />
+    <%= text_field_tag 'address[city]' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag 'address[street]', "番地" %><br />
+    <%= text_field_tag 'address[street]' %>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+
+  <h3>お支払い方法</h3>
+  <%= radio_button_tag 'order[payment]', 0 %> 代引<br/>
+  <br/>
+  <br/>
+  <br/>
+  <%= radio_button_tag 'order[payment]', 1 %> 銀行振込
+  <br/>
+  <br/>
+
+  <table class="table table-striped">
+	<tbody>
+		<tr>
+			<th>銀行名</th>
+			<td>xxxxxxxxx</td>
+		</tr>
+		<tr>
+			<th>支店名</th>
+			<td>xxxxxxxxx</td>
+		</tr>
+		<tr>
+			<th>預金科目</th>
+			<td>xxxxxxxxx</td>
+		</tr>
+		<tr>
+			<th>口座番号</th>
+			<td>xxxxxxxxx</td>
+		</tr>
+		<tr>
+			<th>口座名義</th>
+			<td>xxxxxxxxx</td>
+		</tr>
+		<tr>
+			<th>振込名義</th>
+			<td>xxxxxxxxx</td>
+		</tr>
+	</tbody>
+</table>
+  
+<%= submit_tag '購入確定', class: "btn btn-primary btn-lg" %>
+<% end %>

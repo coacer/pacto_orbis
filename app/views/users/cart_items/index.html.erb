@@ -27,6 +27,12 @@
         </div>
       </div>
     <% end %>
-    <h2>合計金額 : ¥<span id="sum-price"><%= current_user.cart_sum_price %></span></h2>
+
+    <% if @items.present? %>
+      <h2>合計金額 : ¥<span id="sum-price"><%= current_user.cart_sum_price %></span></h2>
+      <%= link_to "購入に進む", new_users_order_path, class: "btn btn-primary" %>
+    <% else %>
+      <h3>まだカートに商品はありません</h3>
+    <% end %>
   </div>
 </div>
