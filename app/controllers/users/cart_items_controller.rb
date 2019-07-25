@@ -51,6 +51,11 @@ class Users::CartItemsController < ApplicationController
   end
 
   def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    cart_item.item.add_stock(cart_item.amount)
+    flash[:success] = "商品を削除しました"
+    redirect_to users_cart_items_path
   end
 
   private

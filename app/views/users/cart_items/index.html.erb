@@ -20,6 +20,7 @@
               </p>
               <p class="item-stock">在庫: <%= item.stock %>枚</p>
               <p class="item-status"><%= item.status ? "販売中" : "売り切れ" %></p>
+              <%= link_to "削除", users_cart_item_path(item.cart_items.first), method: :delete, data: { "confirm" => "本当に削除しますか？" } %>
             </div>
 
           </div>

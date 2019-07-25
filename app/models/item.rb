@@ -21,6 +21,11 @@ class Item < ApplicationRecord
     [*1..num]  # 1からstock + カートにある枚数の数まで連番の配列を返す
   end
 
+  def add_stock(amount)
+    self.stock = stock + amount
+    save!
+  end
+
   def reduce_stock(amount)
     self.stock = stock - amount
     save!
