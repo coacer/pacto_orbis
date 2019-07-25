@@ -11,4 +11,30 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true }
   validates :stock, presence: true, numericality: { only_integer: true }
 
+  def stock_array
+    [*1..stock]  # 1からstockの数まで連番の配列を返す
+  end
+
+  def stock_and_cart_array
+    num = stock + cart_items.first.amount
+    [*1..num]  # 1からstock + カートにある枚数の数まで連番の配列を返す
+  end
+
+  def add_stock(amount)
+    self.stock = stock + amount
+    save!
+  end
+
+  def reduce_stock(amount)
+    self.stock = stock - amount
+    save!
+  end
+
+  def added_to_cart_by?(user)
+    cart_items.where(user_id: user.id).present?
+  end
+
+  def cart_item_by(user)
+    cart_items.find_by(user_id: user.id)
+  end
 end

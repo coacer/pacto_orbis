@@ -4,7 +4,8 @@ class Users::ItemsController < ApplicationController
   def index
     @model_name = params[:model]
     @record = get_record_by(id: params[:id], model: @model_name)
-    @items = @record.nil? ? Item.page(params[:page]).reverse_order : @record.items.page(params[:page]).reverse_order
+    @items = @record.nil? ? Item.page(params[:page]).reverse_order
+                            : @record.items.page(params[:page]).reverse_order
     @artists = Artist.all.shuffle[0..7]
     @labels = Label.all.shuffle[0..7]
     @genres = Genre.all.shuffle[0..7]
@@ -12,6 +13,7 @@ class Users::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @cart_item = @item.added_to_cart_by?(current_user) ? @item.cart_item_by(current_user) : CartItem.new
   end
 
   def get_songs

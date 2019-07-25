@@ -14,7 +14,10 @@
 
             <div class="col-sm-8">
               <h4><%= item.title %> / <%= item.artist.name %></h4>
-              <p>¥<%= item.price %> × <%= item.cart_items.first.amount %>枚</p>
+              <p>
+                ¥<%= item.price %> × <%= select_tag('cart_item[amount]', options_for_select(item.stock_and_cart_array, selected: item.cart_items.first.amount),
+                                                         data: { "url" => users_cart_item_path(item) }) %>枚
+              </p>
               <p>在庫: <%= item.stock %>枚</p>
               <p><%= item.status ? "販売中" : "売り切れ" %></p>
             </div>

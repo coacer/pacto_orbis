@@ -45,4 +45,5 @@ ja:
         prefecture_name: 都道府県
         city: 市区町村
         street: 番地
-
+      cart_item:
+        amount: 枚数

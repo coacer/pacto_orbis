@@ -72,8 +72,8 @@ end
           street: street
         )
 
-        random_num = (1..30).to_a.shuffle[0]
-        user.cart_items.create!(item_id: random_num, amount: random_num)
+        # random_num = (1..30).to_a.shuffle[0]
+        # user.cart_items.create!(item_id: random_num, amount: random_num)
       end
     end
 

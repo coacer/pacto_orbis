@@ -1,3 +1,4 @@
+<%= render 'layouts/error', object: @cart_item %>
 <div class="jumbotron item-show-wrapper">
   <div class="container-fluid">
     <div class="row">
@@ -10,21 +11,20 @@
         <p>￥<%= @item.price %></p>
         <p><%= @item.status ? "販売中" : "売り切れ" %></p>
         <%= select_tag('item[disks]', options_for_select(@item.disks.map.with_index{ |disk, index| ["Disk#{index + 1}", disk.id] }), 
-                                                          data: { "url" => get_songs_users_items_path }) %>
+                                                         data: { "url" => get_songs_users_items_path }) %>
         <ol id="songs-list">
-          <% @item.disks.first.songs.each do |song| %>
-            <li><%= song.title %></li>
-          <% end %>
+        <% @item.disks.first.songs.each do |song| %>
+          <li><%= song.title %></li>
+        <% end %>
         </ol>
+
         <p>在庫: <%= @item.stock %></p>
-        <select id="" name="">
-          <option value="">1</option>
-          <option value="">2</option>
-          <option value="">3</option>
-          <option value="">4</option>
-        </select>
-        枚
-        <button class="btn btn-primary">カートに追加</button>
+
+        <%= form_with model: [:users, @cart_item], local: true do |f| %>
+          <%= f.select :amount, @item.stock_array, selected: 1 %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.submit "カートに追加", class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>
