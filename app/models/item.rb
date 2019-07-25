@@ -5,6 +5,8 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_many :disks, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+  has_many :order_details, dependent: :destroy
+
   attachment :jacket_image
   accepts_nested_attributes_for :disks, reject_if: :all_blank, allow_destroy: true
   

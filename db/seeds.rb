@@ -74,7 +74,7 @@ end
           street: street
         )
 
-        user.orders.create!(
+        order = user.orders.create!(
           total_price: total_price,
           payment: 0,
           status: 0,
@@ -82,6 +82,16 @@ end
           address: address.kanji,
           delivery_cost: 500
         )
+
+        5.times do
+          cd_price = Faker::Number.number(4)
+          cd_amount = Faker::Number.number(1)
+
+          order.order_details.build(
+            cd_amount: cd_amount,
+            cd_price: cd_price,
+          )
+        end
 
         # random_num = (1..30).to_a.shuffle[0]
         # user.cart_items.create!(item_id: random_num, amount: random_num)
