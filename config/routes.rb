@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
     resources :addresses, only: [:create, :edit, :update, :destroy]
     resources :cart_items, only: [:index, :create, :update, :destroy]
+    resources :orders, only: [:index, :new, :create]
   end
 
   devise_for :admins, controllers: {
