@@ -1,0 +1,42 @@
+
+<% orders.each do |order| %>
+  <div class="jumbotron">
+    <%= order.created_at.strftime('%Y/%m/%d') %>
+    <div class="container-fluid order-wrapper">
+      <div class="row">
+
+        <div class="col-sm-7">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>商品名</th>
+                <th>枚数</th>
+                <th>値段</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% order.items.each do |item| %>
+                <tr>
+                  <th><%= item.title %></th>
+                  <td><%= item.order_details.first.cd_amount %></td>
+                  <td>￥<%= item.price %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-sm-5">
+          <p>注文番号: <%= order.id %></p>
+          <p><%= order.status %></p>
+          <p>お支払い方法: <%= order.payment %></p>
+          <p>送付先: <%= order.address %></p>
+          <p>送料: ￥<%= order.delivery_cost %></p>
+          <p>合計金額: ￥<%= order.total_price %></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= paginate orders, class: "paginate" %>

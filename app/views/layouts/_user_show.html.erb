@@ -17,7 +17,7 @@
         <%= render 'layouts/addresses_index', namespace: namespace, addresses: user.addresses %>
       </div>
       <div class="tab-pane" id="sampleContentC"> <!-- 購入履歴一覧 -->
-        <p>タブＣの内容</p>
+        <%= render 'layouts/orders_index', user: user, orders: user.orders.page(params[:page]).reverse_order %>
       </div>
     </div>
   </div>

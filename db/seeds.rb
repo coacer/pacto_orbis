@@ -86,10 +86,12 @@ end
         5.times do
           cd_price = Faker::Number.number(4)
           cd_amount = Faker::Number.number(1)
+          item_id = (1..30).to_a.shuffle[0]
 
-          order.order_details.build(
+          order.order_details.create!(
             cd_amount: cd_amount,
             cd_price: cd_price,
+            item_id: item_id,
           )
         end
 
