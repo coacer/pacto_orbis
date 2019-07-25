@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :create, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :addresses, only: :destroy
+    resources :orders, only: [:index, :show, :update]
   end
 
   namespace :users, path: '' do

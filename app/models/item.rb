@@ -34,7 +34,7 @@ class Item < ApplicationRecord
   end
 
   def added_to_cart_by?(user)
-    cart_items.where(user_id: user.id).present?
+    cart_items.present? && cart_items.where(user_id: user.id).present?
   end
 
   def cart_item_by(user)
