@@ -64,12 +64,23 @@ end
         postal_code = Faker::Number.number(7)
         address = Gimei.address
         street = Faker::Number.number(4) + '-' + Faker::Number.number(3)
+        total_price = Faker::Number.number(5)
+
         user.addresses.create!(
           name: name,
           postal_code: postal_code,
           prefecture_name: address.prefecture.kanji,
           city: address.city.kanji,
           street: street
+        )
+
+        user.orders.create!(
+          total_price: total_price,
+          payment: 0,
+          status: 0,
+          postal_code: postal_code,
+          address: address.kanji,
+          delivery_cost: 500
         )
 
         # random_num = (1..30).to_a.shuffle[0]
