@@ -37,5 +37,11 @@ FactoryBot.define do
       end
     end
 
+    trait :create_with_orders do
+      after(:create) do |user|
+        create_list(:order, 5, user: user)
+      end
+    end
+
   end
 end
