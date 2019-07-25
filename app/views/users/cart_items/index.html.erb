@@ -19,7 +19,7 @@
                                                          data: { "url" => users_cart_item_path(item.cart_item_by(current_user)) }, class: "cart_item_amount") %>枚
               </p>
               <p class="item-stock">在庫: <%= item.stock %>枚</p>
-              <p><%= item.status ? "販売中" : "売り切れ" %></p>
+              <p class="item-status"><%= item.status ? "販売中" : "売り切れ" %></p>
             </div>
 
           </div>

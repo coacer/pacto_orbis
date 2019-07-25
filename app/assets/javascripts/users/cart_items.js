@@ -10,7 +10,10 @@ $(() => {
         dataType: "json",
 
         success: (data) => {
-          $(this).parent().parent().find('.item-stock').text(`在庫: ${data.stock}枚`);
+          const $item = $(this).parent().parent();
+          const statusStr = data.status ? "販売中" : "売り切れ";
+          $item.find('.item-stock').text(`在庫: ${data.stock}枚`);
+          $item.find('.item-status').text(statusStr);
         },
 
         error: (XMLHttpRequest, textStatus, errorThrown) => {

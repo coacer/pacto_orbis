@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+  before_save { self.status = stock == 0 ? false : true }
   belongs_to :artist
   belongs_to :label
   belongs_to :genre

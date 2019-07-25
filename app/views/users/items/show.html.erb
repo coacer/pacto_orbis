@@ -20,10 +20,12 @@
 
         <p>在庫: <%= @item.stock %></p>
 
-        <%= form_with model: [:users, @cart_item], local: true do |f| %>
-          <%= f.select :amount, @item.stock_array, selected: 1 %>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.submit "カートに追加", class: "btn btn-primary" %>
+        <% if @item.stock != 0 %>
+          <%= form_with model: [:users, @cart_item], local: true do |f| %>
+            <%= f.select :amount, @item.stock_array, selected: 1 %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.submit "カートに追加", class: "btn btn-primary" %>
+          <% end %>
         <% end %>
       </div>
     </div>
