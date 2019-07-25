@@ -10,10 +10,13 @@ $(() => {
         dataType: "json",
 
         success: (data) => {
+          const item = data[0];
+          const price = data[1];
           const $item = $(this).parent().parent();
-          const statusStr = data.status ? "販売中" : "売り切れ";
-          $item.find('.item-stock').text(`在庫: ${data.stock}枚`);
+          const statusStr = item.status ? "販売中" : "売り切れ";
+          $item.find('.item-stock').text(`在庫: ${item.stock}枚`);
           $item.find('.item-status').text(statusStr);
+          $('#sum-price').text(price);
         },
 
         error: (XMLHttpRequest, textStatus, errorThrown) => {

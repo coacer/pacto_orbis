@@ -42,7 +42,7 @@ class Users::CartItemsController < ApplicationController
           @cart_item.update(amount: amount)
           amount_diff = amount - cart_item_amount
           @item.reduce_stock(amount_diff)
-          render json: @item.reload
+          render json: [@item.reload, current_user.cart_sum_price]
         # else
         #   render json: @cart_item
         # end

@@ -60,4 +60,12 @@ class User < ApplicationRecord
   def set_address
     self.address = [@prefecture_name, @city, @street].join(' ')
   end
+
+  def cart_sum_price
+    sum = 0
+    cart_items.each do |cart_item|
+      sum += cart_item.amount * cart_item.item.price
+    end  
+    return sum
+  end
 end
