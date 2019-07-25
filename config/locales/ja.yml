@@ -47,3 +47,14 @@ ja:
         street: 番地
       cart_item:
         amount: 枚数
+  enums:
+    order:
+      payment:
+        cash: 代引き
+        bank: 銀行振込
+      status:
+        receipt: 受付
+        preparation: 商品準備中
+        shipped: 出荷済
+
+

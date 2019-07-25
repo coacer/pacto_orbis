@@ -28,8 +28,8 @@
 
         <div class="col-sm-5">
           <p>注文番号: <%= order.id %></p>
-          <p><%= order.status %></p>
-          <p>お支払い方法: <%= order.payment %></p>
+          <p>ステータス: <%= order.status_i18n %></p>
+          <p>お支払い方法: <%= order.payment_i18n %></p>
           <p>送付先: <%= order.address %></p>
           <p>送料: ￥<%= order.delivery_cost %></p>
           <p>合計金額: ￥<%= order.total_price %></p>
