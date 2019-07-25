@@ -1,11 +1,13 @@
+<%= render 'layouts/error', object: @address if @address%>
+<%= render 'layouts/error', object: @order if @order %>
 <%= form_tag users_orders_path do %>
   <h3>送付先</h3>
   <hr>
-  <%= radio_button_tag 'order[address]', 0 %> この住所を使う
-  <p><%= current_user.read_postal_code %></p>
-  <p><%= current_user.address %></p>
+  <%= radio_button_tag 'order[address]', 0, checked: true %> この住所を使う
+  <p><%= @user.read_postal_code %></p>
+  <p><%= @user.address %></p>
 
-  <% current_user.addresses.each do |address| %>
+  <% @user.addresses.each do |address| %>
     <hr>
     <%= radio_button_tag 'order[address]', address.id %> この住所を使う
     <p><%= address.name %></p>
@@ -47,7 +49,7 @@
   <br/>
 
   <h3>お支払い方法</h3>
-  <%= radio_button_tag 'order[payment]', 0 %> 代引<br/>
+  <%= radio_button_tag 'order[payment]', 0, checked: true %> 代引<br/>
   <br/>
   <br/>
   <br/>
