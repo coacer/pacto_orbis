@@ -47,6 +47,9 @@ gem 'cocoon'
 gem 'pry-rails'
 gem 'rails-i18n'
 gem 'enum_help'
+gem 'faker'
+gem 'faker-japanese'
+gem 'gimei'
 
 gem 'listen', '>= 3.0.5', '< 3.2'
 
@@ -57,10 +60,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'database_cleaner'
-  gem 'faker-japanese'
-  gem 'gimei'
 end
 
 group :development do
