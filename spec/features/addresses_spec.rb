@@ -48,10 +48,13 @@ RSpec.feature "Addresses", type: :feature do
         fill_in "市区町村", with: "渋谷区"
         fill_in "番地", with: "0000-0000"
         click_button "保存"
+
+        sleep 0.5 # jsのテストのためこれを入れないとパスしたりしなかったりする
+        # まだ稀に通らない
+
         expect(page).to have_current_path users_users_path
         expect(page).to have_content "住所を編集しました"
         click_link "登録住所一覧"
-        pending "なぜかエラーになるので保留"
         expect(page).to have_content "東京都 渋谷区 0000-0000"
       end
 
