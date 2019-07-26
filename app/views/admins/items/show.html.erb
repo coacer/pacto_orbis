@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6">
-        <%= attachment_image_tag @item, :jacket_image, :fill, 300, 300, size: "300x300", fallback: "no_image.png" %>
+        <%= attachment_image_tag @item, :jacket_image, :fill, 300, 300, size: "300x300", fallback: "/images/no_image.png" %>
       </div>
       <div class="col-sm-6">
         <h2><%= @item.title %> / <%= @item.artist.name %></h2>
