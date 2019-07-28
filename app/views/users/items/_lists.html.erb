@@ -18,4 +18,4 @@
     </div>
   </div>
 <% end %>
-<%= paginate items, class: "paginate" %>
+<%= paginate items, class: "paginate" unless params[:search] %>

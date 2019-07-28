@@ -11,11 +11,19 @@
     </div>
 
     <div class="collapse navbar-collapse" id="navbarEexample7">
-        <% if user_signed_in? %>
-          <p class="navbar-text">ようこそ<%= current_user.full_name %>さん。</p>
-        <% end %>
+      <% if user_signed_in? %>
+        <p class="navbar-text">ようこそ<%= current_user.full_name %>さん。</p>
+      <% end %>
       <ul class="nav navbar-nav navbar-right">
-          <!--  管理者 -->
+        <!-- 検索フォーム -->
+        <li>
+          <% namespace = user_signed_in? ? :users : :admins %>
+          <%= form_tag [namespace, :items], method: :get do %>
+            <%= text_field_tag :search %>
+            <%= submit_tag "検索", class: "btn btn-info" %>
+          <% end %>
+        </li>
+        <!--  管理者 -->
         <% if admin_signed_in? %>
           <li><%= link_to "ユーザー", admins_users_path %></li>
           <li><%= link_to "アーティスト", admins_artists_path %></li>

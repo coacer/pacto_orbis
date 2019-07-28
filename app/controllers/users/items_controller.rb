@@ -2,10 +2,8 @@ class Users::ItemsController < ApplicationController
   protect_from_forgery except: :get_songs
 
   def index
-    @model_name = params[:model]
-    @record = get_record_by(id: params[:id], model: @model_name)
-    @items = @record.nil? ? Item.page(params[:page]).reverse_order
-                            : @record.items.page(params[:page]).reverse_order
+    @model_name = params[:model] # ビューで使用するためインスタンス変数に格納
+    @items = get_items_record
     @artists = Artist.all.shuffle[0..7]
     @labels = Label.all.shuffle[0..7]
     @genres = Genre.all.shuffle[0..7]
@@ -31,6 +29,17 @@ class Users::ItemsController < ApplicationController
         Label.find(id)
       when "Genre"
         Genre.find(id)
+      end
+    end
+
+    def get_items_record
+      if params[:model]
+        @record = get_record_by(id: params[:id], model: params[:model])
+        @record.items.page(params[:page]).reverse_order
+      elsif params[:search]
+        Item.search(params[:search])
+      else
+        Item.page(params[:page]).reverse_order
       end
     end
 end
