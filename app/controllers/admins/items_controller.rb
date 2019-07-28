@@ -3,7 +3,7 @@ class Admins::ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   protect_from_forgery except: :get_songs
   def index
-    @items = Item.page(params[:page]).reverse_order
+    @items = get_items_record
   end
 
   def show
@@ -62,5 +62,13 @@ class Admins::ItemsController < ApplicationController
                                    :price, :status, :stock, :jacket_image,
                                    disks_attributes: [:id, :_destroy,
                                    songs_attributes: [:id, :_destroy, :title]])
+    end
+
+    def get_items_record
+      if params[:search]
+        Item.search(params[:search])
+      else
+        Item.page(params[:page]).reverse_order
+      end
     end
 end

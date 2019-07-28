@@ -40,4 +40,15 @@ class Item < ApplicationRecord
   def cart_item_by(user)
     cart_items.find_by(user_id: user.id)
   end
+
+  def self.search(search)
+    return Item.all if search.blank?
+    records = Item.where(['title LIKE ?', "%#{search}%"])
+
+    parent_records = Artist.where(['name LIKE ?', "%#{search}%"]) +
+    Label.where(['name LIKE ?', "%#{search}%"]) +
+    Genre.where(['name LIKE ?', "%#{search}%"])
+    parent_records.map{ |parent_record| records += parent_record.items }
+    return records
+  end
 end

@@ -26,6 +26,10 @@
     </ul>
   </div>
   <div class="col-sm-9 item-lists-box">
-    <%= render 'lists', items: @items %>
+    <% if @items.present? %>
+      <%= render 'lists', items: @items %>
+    <% else %>
+      <h2>検索結果はありません</h2>
+    <% end %>
   </div>
 </div>

@@ -24,4 +24,7 @@
   </div>
     <% end %>
 </div>
-    <%= paginate @items, class: "paginate" %>
+    <%= paginate @items, class: "paginate" unless params[:search] %>
+    <% unless @items.present? %>
+      <h2>検索結果はありません</h2>
+    <% end %>
