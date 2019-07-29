@@ -4,14 +4,14 @@
       <div class="row">
 
         <div class="col-sm-4">
-          <%= attachment_image_tag item, :jacket_image, :fill, 100, 100, size: "100x100", fallback: "no_image.png" %>
+          <%= attachment_image_tag item, :jacket_image, :fill, 200, 200, size: "200x200", fallback: "no_image.png" %>
         </div>
 
         <div class="col-sm-8">
           <h4><%= item.title %> / <%= item.artist.name %></h4>
           <p><%= item.status ? "販売中" : "売り切れ" %></p>
           <p>在庫: <%= item.stock %></p>
-          <%= link_to 'show', users_item_path(item) %>
+          <%= link_to 'show', users_item_path(item), class: "btn btn-success pull-right" %>
         </div>
 
       </div>

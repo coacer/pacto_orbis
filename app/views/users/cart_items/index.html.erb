@@ -9,7 +9,7 @@
           <div class="row">
 
             <div class="col-sm-4">
-              <%= attachment_image_tag item, :jacket_image, :fill, 100, 100, size: "100x100", fallback: "no_image.png" %>
+              <%= attachment_image_tag item, :jacket_image, :fill, 180, 180, size: "180x180", fallback: "no_image.png" %>
             </div>
 
             <div class="col-sm-8">
@@ -29,8 +29,8 @@
     <% end %>
 
     <% if @items.present? %>
-      <h2>合計金額 : ¥<span id="sum-price"><%= current_user.cart_sum_price %></span></h2>
-      <%= link_to "購入に進む", new_users_order_path, class: "btn btn-primary" %>
+      <h2 class="price">合計金額 : ¥<span id="sum-price"><%= current_user.cart_sum_price %></span></h2>
+      <%= link_to "購入に進む", new_users_order_path, class: "btn btn-primary pull-right" %>
     <% else %>
       <h3>まだカートに商品はありません</h3>
     <% end %>
