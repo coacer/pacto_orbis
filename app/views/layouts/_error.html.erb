@@ -1,6 +1,6 @@
-<% if object.errors.any? || flash[:error] || flash[:alert] %>
+<% if object&.errors&.any? || flash[:error] || flash[:alert] %>
   <div class="alert alert-danger" role="alert">
-    <% if object.errors.any? %>
+    <% if object&.errors&.any? %>
       <ul>
         <% object.errors.full_messages.each do |message| %>
           <li><%= message %></li>

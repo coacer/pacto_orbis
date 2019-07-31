@@ -14,11 +14,18 @@
               </tr>
             </thead>
             <tbody>
-              <% order.items.each do |item| %>
+              <%# <% order.items.each do |item| %>
+                <!-- <tr> -->
+                  <!-- <th><%# item.title %></th> -->
+                  <!-- <td><%# item.order_details.first.cd_amount %></td> -->
+                  <!-- <td>￥<%# item.price %></td> -->
+                <!-- </tr> -->
+              <%# <% end %>
+              <% order.order_details.each do |order_detail| %>
                 <tr>
-                  <th><%= item.title %></th>
-                  <td><%= item.order_details.first.cd_amount %></td>
-                  <td>￥<%= item.price %></td>
+                  <th><%= order_detail.item.title %></th>
+                  <td><%= order_detail.cd_amount %></td>
+                  <td>￥<%= order_detail.item.price %></td>
                 </tr>
               <% end %>
             </tbody>

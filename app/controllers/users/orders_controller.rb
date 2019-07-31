@@ -10,14 +10,28 @@ class Users::OrdersController < ApplicationController
 
   def create
     @DELIVELY_COST = 500
-    bool = true
-    bool = create_address if params[:order][:address].to_i == -1
+    # bool = true
+    # bool = create_address if params[:order][:address].to_i == -1
+    bool = params[:order][:address].to_i == -1 ? create_address : true
+
+    current_user.cart_items.each do |cart_item|
+      unless cart_item.correct_amount?
+        flash[:error] = "在庫がありません"
+        @user = current_user.reload
+        redirect_to users_cart_items_path
+        return
+      end
+    end
+
     if bool
       @order = current_user.orders.build(order_params)
       if @order.save
         current_user.cart_items.each do |cart_item|
-          @order.order_details.create!(item_id: cart_item.id, cd_amount: cart_item.amount,
+          # @order.order_details.create!(item_id: cart_item.id, cd_amount: cart_item.amount,
+          #                              cd_price: cart_item.item.price)
+          @order.order_details.create!(item_id: cart_item.item.id, cd_amount: cart_item.amount,
                                        cd_price: cart_item.item.price)
+          cart_item.item.reduce_stock(cart_item.amount)
           cart_item.destroy
         end
         redirect_to finish_users_orders_path
@@ -35,29 +49,29 @@ class Users::OrdersController < ApplicationController
   end
 
   private
-    def address_params
-      params.require(:address).permit(:name, :postal_code, :prefecture_name, :city, :street)
-    end
+  def address_params
+    params.require(:address).permit(:name, :postal_code, :prefecture_name, :city, :street)
+  end
 
-    def order_params
-      case params[:order][:address].to_i
-      when 0
-        postal_code = current_user.postal_code
-        address = current_user.address
-      when -1
-        postal_code = @address.postal_code
-        address = @address.address
-      else
-        address_record = Address.find(params[:order][:address]) 
-        postal_code = address_record.postal_code
-        address = address_record.address
-      end
-      { postal_code: postal_code, address: address, payment: params[:order][:payment].to_i,
-        total_price: current_user.cart_sum_price + @DELIVELY_COST, delivery_cost: @DELIVELY_COST }
+  def order_params
+    case params[:order][:address].to_i
+    when 0
+      postal_code = current_user.postal_code
+      address = current_user.address
+    when -1
+      postal_code = @address.postal_code
+      address = @address.address
+    else
+      address_record = Address.find(params[:order][:address])
+      postal_code = address_record.postal_code
+      address = address_record.address
     end
+    { postal_code: postal_code, address: address, payment: params[:order][:payment].to_i,
+      total_price: current_user.cart_sum_price + @DELIVELY_COST, delivery_cost: @DELIVELY_COST }
+  end
 
-    def create_address
-      @address = current_user.addresses.build(address_params)
-      @address.save
-    end
+  def create_address
+    @address = current_user.addresses.build(address_params)
+    @address.save
+  end
 end
