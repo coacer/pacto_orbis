@@ -1,10 +1,11 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
+<%= render 'layouts/error', object: nil %>
     <h3>カート</h3>
     <hr>
 
     <% @items.each do |item| %>
-      <div class="jumbotron item-wrapper">
+      <div class="jumbotron">
         <div class="container-fluid">
           <div class="row">
 
@@ -13,10 +14,16 @@
             </div>
 
             <div class="col-sm-8">
+            <% if item.stock < item.cart_item_by(current_user).amount %>
+              <p class="alert alert-danger">在庫が足りません<br>商品を削除して選択し直してください</p>
+            <% end %>
               <h4><%= item.title %> / <%= item.artist.name %></h4>
               <p>
-                ¥<%= item.price %> × <%= select_tag('cart_item[amount]', options_for_select(item.stock_and_cart_array, selected: item.cart_items.first.amount),
+              ¥<%= item.price %>
+            <% if item.stock >= item.cart_item_by(current_user).amount %>
+            × <%= select_tag('cart_item[amount]', options_for_select(item.stock_array, selected: item.cart_item_by(current_user).amount),
                                                          data: { "url" => users_cart_item_path(item.cart_item_by(current_user)) }, class: "cart_item_amount") %>枚
+            <% end %>
               </p>
               <p class="item-stock">在庫: <%= item.stock %>枚</p>
               <p class="item-status"><%= item.status ? "販売中" : "売り切れ" %></p>
@@ -30,7 +37,7 @@
 
     <% if @items.present? %>
       <h2 class="price">合計金額 : ¥<span id="sum-price"><%= current_user.cart_sum_price %></span></h2>
-      <%= link_to "購入に進む", new_users_order_path, class: "btn btn-primary pull-right" %>
+      <%= link_to "購入に進む", new_users_order_path, class: "btn btn-primary pull-right new-order-btn" %>
     <% else %>
       <h3>まだカートに商品はありません</h3>
     <% end %>

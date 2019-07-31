@@ -10,7 +10,7 @@ class Users::CartItemsController < ApplicationController
     @cart_item = current_user.cart_items.build(cart_item_params)
     @item = @cart_item.item
     if @cart_item.save
-      @item.reduce_stock(@cart_item.amount)
+      # @item.reduce_stock(@cart_item.amount)
       flash[:success] = "商品を追加しました"
       redirect_to users_cart_items_path
     else
@@ -26,8 +26,9 @@ class Users::CartItemsController < ApplicationController
       format.html { # items/showページからのカート追加
         amount = params[:cart_item][:amount].to_i
         sum_amount = @cart_item.amount + amount
+        sum_amount = @item.stock if sum_amount > @item.stock
         if @cart_item.update(amount: sum_amount)
-          @item.reduce_stock(amount)
+          # @item.reduce_stock(amount)
           flash[:success] = "商品を追加しました"
           redirect_to users_cart_items_path
         else
@@ -37,12 +38,12 @@ class Users::CartItemsController < ApplicationController
 
       format.js { # cart_items/indexページからのAjaxでのカート追加
         amount = params[:amount].to_i
-        cart_item_amount = @cart_item.amount
+        # cart_item_amount = @cart_item.amount
         # if @cart_item.update(amount: amount) # 自作バリデーションに引っかかってしまう。バリデーションの良いロジックが思いつかないのでバリデーションコメントアウト
           @cart_item.update(amount: amount)
-          amount_diff = amount - cart_item_amount
-          @item.reduce_stock(amount_diff)
-          render json: [@item.reload, current_user.cart_sum_price]
+          # amount_diff = amount - cart_item_amount
+          # @item.reduce_stock(amount_diff)
+          render json: [@item.reload, current_user.cart_sum_price, @cart_item]
         # else
         #   render json: @cart_item
         # end
