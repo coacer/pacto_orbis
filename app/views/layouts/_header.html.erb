@@ -41,7 +41,7 @@
         <% else %>
           <li><%= link_to "トップ", users_items_path %></li>
           <li><%= link_to "マイページ", users_users_path %></li>
-          <li><%= link_to "カート", "#" %></li>
+          <li><%= link_to "カート", users_cart_items_path %></li>
           <!--  エンドユーザー(ログアウト中) -->
           <li><%= link_to "ログイン", new_user_session_path %></li>
         <% end %>
