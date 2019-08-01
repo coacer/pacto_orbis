@@ -49,29 +49,29 @@ class Users::OrdersController < ApplicationController
   end
 
   private
-  def address_params
-    params.require(:address).permit(:name, :postal_code, :prefecture_name, :city, :street)
-  end
-
-  def order_params
-    case params[:order][:address].to_i
-    when 0
-      postal_code = current_user.postal_code
-      address = current_user.address
-    when -1
-      postal_code = @address.postal_code
-      address = @address.address
-    else
-      address_record = Address.find(params[:order][:address])
-      postal_code = address_record.postal_code
-      address = address_record.address
+    def address_params
+      params.require(:address).permit(:name, :postal_code, :prefecture_name, :city, :street)
     end
-    { postal_code: postal_code, address: address, payment: params[:order][:payment].to_i,
-      total_price: current_user.cart_sum_price + @DELIVELY_COST, delivery_cost: @DELIVELY_COST }
-  end
 
-  def create_address
-    @address = current_user.addresses.build(address_params)
-    @address.save
-  end
+    def order_params
+      case params[:order][:address].to_i
+      when 0
+        postal_code = current_user.postal_code
+        address = current_user.address
+      when -1
+        postal_code = @address.postal_code
+        address = @address.address
+      else
+        address_record = Address.find(params[:order][:address])
+        postal_code = address_record.postal_code
+        address = address_record.address
+      end
+      { postal_code: postal_code, address: address, payment: params[:order][:payment].to_i,
+        total_price: current_user.cart_sum_price + @DELIVELY_COST, delivery_cost: @DELIVELY_COST }
+    end
+
+    def create_address
+      @address = current_user.addresses.build(address_params)
+      @address.save
+    end
 end
