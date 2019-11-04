@@ -22,4 +22,11 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: pacto_orbis2
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  host: ENV['DATABASE_NAME']
+  username: ENV['DATABASE_USER']
+  password: ENV['DATABASE_PASS']
