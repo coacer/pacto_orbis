@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2019_07_25_071521) do
 
-  create_table "addresses", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "postal_code", null: false
     t.string "address", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -34,44 +34,44 @@ ActiveRecord::Schema.define(version: 2019_07_25_071521) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "artists", force: :cascade do |t|
+  create_table "artists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "cart_items", force: :cascade do |t|
+  create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "amount", null: false
-    t.integer "user_id"
-    t.integer "item_id"
+    t.bigint "user_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_cart_items_on_item_id"
     t.index ["user_id"], name: "index_cart_items_on_user_id"
   end
 
-  create_table "disks", force: :cascade do |t|
-    t.integer "item_id"
+  create_table "disks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_disks_on_item_id"
   end
 
-  create_table "genres", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.integer "price", null: false
     t.boolean "status", default: true, null: false
     t.string "jacket_image_id"
     t.integer "stock", null: false
-    t.integer "artist_id", null: false
-    t.integer "label_id", null: false
-    t.integer "genre_id", null: false
+    t.bigint "artist_id", null: false
+    t.bigint "label_id", null: false
+    t.bigint "genre_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_items_on_artist_id"
@@ -79,45 +79,45 @@ ActiveRecord::Schema.define(version: 2019_07_25_071521) do
     t.index ["label_id"], name: "index_items_on_label_id"
   end
 
-  create_table "labels", force: :cascade do |t|
+  create_table "labels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "order_details", force: :cascade do |t|
+  create_table "order_details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "cd_amount", null: false
     t.integer "cd_price", null: false
-    t.integer "item_id"
-    t.integer "order_id"
+    t.bigint "item_id"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_order_details_on_item_id"
     t.index ["order_id"], name: "index_order_details_on_order_id"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "total_price", null: false
     t.integer "payment", null: false
     t.integer "status", default: 0, null: false
     t.string "postal_code", null: false
     t.string "address", null: false
     t.integer "delivery_cost", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "songs", force: :cascade do |t|
+  create_table "songs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "disk_id"
+    t.bigint "disk_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["disk_id"], name: "index_songs_on_disk_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -142,4 +142,15 @@ ActiveRecord::Schema.define(version: 2019_07_25_071521) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "users"
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "cart_items", "users"
+  add_foreign_key "disks", "items"
+  add_foreign_key "items", "artists"
+  add_foreign_key "items", "genres"
+  add_foreign_key "items", "labels"
+  add_foreign_key "order_details", "items"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "orders", "users"
+  add_foreign_key "songs", "disks"
 end
