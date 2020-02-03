@@ -11,6 +11,7 @@ services:
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
       - log-data:/webapp/log
+      - bundle-data:/usr/local/bundle
     depends_on:
       - db
   db:
@@ -34,3 +35,4 @@ volumes:
   tmp-data:
   log-data:
   db-data:
+  bundle-data:
